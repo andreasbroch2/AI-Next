@@ -82,7 +82,7 @@ export const getStaticProps: GetStaticProps = async ({
   const menuItems = await getNavMenu('PRIMARY');
   const footerMenuItems = await getNavMenu('FOOTER');
   var cleanElement = data.post.content.replace(/\n/g, '')
-  cleanElement = cleanElement.replace(/href="https:\/\/dksmarthome\.ditsmartehjem\.dk/g, 'href="https://dksmarthome.dk');
+  cleanElement = cleanElement.replace(/href="https:\/\/aiedgemarketing\.ditsmartehjem\.dk/g, 'href="https://aiedgemarketing.com');
   return {
     props: {
       preview,
@@ -99,7 +99,7 @@ export const getStaticProps: GetStaticProps = async ({
 export const getStaticPaths: GetStaticPaths = async () => {
   const allPosts = await getAllPostsWithSlug()
   return {
-    paths: allPosts.edges.map(({ node }) => `/artikler/${node.slug}`) || [],
+    paths: allPosts.edges.map(({ node }) => `/blog/${node.slug}`) || [],
     fallback: true,
   }
 }
