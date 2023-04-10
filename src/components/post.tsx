@@ -4,7 +4,7 @@ import Image from 'next/image';
 const Post = ({ post }) => {
 	return (
 		<div className="mb-8 relative">
-			<Link href={`/artikler/${post?.slug}/`}>
+			<Link href={`/blog/${post?.slug}/`}>
 			<figure className="overflow-hidden relative h-64">
 				<Image className='blog-box-image relative' src={post?.featuredImage.node.sourceUrl} alt={post?.featuredImage.node.altText} fill title={post?.title ?? ''} sizes='100vw' />
 			</figure>
