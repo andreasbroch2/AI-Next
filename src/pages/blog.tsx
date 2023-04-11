@@ -13,7 +13,7 @@ const Page = ( {allPosts, data, preview = false, menuItems, footerMenuItems} ) =
 	// If the page is not yet generated, this will be displayed
 	// initially until getStaticProps() finishes running
 	if ( router.isFallback ) {
-		return <div>Indlæser...</div>;
+		return <div>Indlæser...</div>; 
 	}
 
 	return (
