@@ -7,7 +7,8 @@ async function fetchAPI(query = '', { variables }: Record<string, any> = {}) {
       'Authorization'
     ] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`
   }
-
+  console.log(API_URL)
+  console.log(JSON.stringify({query,variables,}))
   // WPGraphQL Plugin must be enabled
   const res = await fetch(API_URL, {
     headers,
@@ -17,7 +18,7 @@ async function fetchAPI(query = '', { variables }: Record<string, any> = {}) {
       variables,
     }),
   })
-
+  console.log(res)
   const json = await res.json()
   if (json.errors) {
     console.error(json.errors)
@@ -72,6 +73,77 @@ export async function getAllPagesWithSlug() {
   `)
   return data?.pages
 }
+export async function getAllProductsWithSlug() {
+  const data = await fetchAPI(`
+    {
+      products(first: 10000) {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+    }
+  `)
+  return data?.products
+}
+export async function getAllProducts() {
+  const data = await fetchAPI(`
+  query NewQuery {
+    products {
+      edges {
+        node {
+          content
+          excerpt
+          slug
+          seo {
+            breadcrumbs {
+              text
+              url
+            }
+            title
+            canonical
+            metaDesc
+            metaRobotsNoindex
+            metaRobotsNofollow
+            opengraphAuthor
+            opengraphDescription
+            opengraphTitle
+            opengraphImage {
+              sourceUrl
+            }
+            opengraphSiteName
+            opengraphPublishedTime
+            opengraphModifiedTime
+            schema {
+              raw
+            }
+            twitterTitle
+            twitterDescription
+            twitterImage {
+              sourceUrl
+            }
+          }
+          featuredImage {
+            node {
+              altText
+              sourceUrl
+            }
+          }
+          name
+          title
+          ... on SimpleProduct {
+            id
+            name
+            regularPrice
+          }
+        }
+      }
+    }
+  }
+  `)
+  return data?.products
+}
 export async function getACFHomepage() {
   const data = await fetchAPI(`
     query GET_ACF_HOMEPAGE {
@@ -122,7 +194,7 @@ export async function getACFHomepage() {
   }
 }`
   )
-  return data.page;
+  return data?.page;
 }
 export async function getSinglePage(slug) {
   const data = await fetchAPI(`
@@ -171,6 +243,54 @@ export async function getSinglePage(slug) {
       },
     })
   return data?.page
+}
+export async function getSingleProduct(slug) {
+  const data = await fetchAPI(`
+  query GET_PRODUCT($slug: ID!) {
+	  product(id: ${slug}, idType: SLUG) {
+	    id
+	    title
+	    content
+	    slug
+	    uri
+      seo {
+        breadcrumbs {
+          text
+          url
+
+        }
+        title
+        canonical
+        metaDesc
+        metaRobotsNoindex
+        metaRobotsNofollow
+        opengraphAuthor
+        opengraphDescription
+        opengraphTitle
+        opengraphImage {
+          sourceUrl
+        }
+        opengraphSiteName
+        opengraphPublishedTime
+        opengraphModifiedTime
+        schema {
+          raw
+        }
+        twitterTitle
+        twitterDescription
+        twitterImage {
+          sourceUrl
+        }
+      }
+	  }
+  }
+  `,
+    {
+      variables: {
+        slug: slug,
+      },
+    })
+  return data
 }
 export async function getAllPostsForHome(preview) {
   const data = await fetchAPI(

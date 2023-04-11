@@ -22,9 +22,6 @@ const poppins = localFont({
 
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    TagManager.initialize({ gtmId: 'GTM-TG6SCN8' });
-}, []);
   return (
     <>
     <Head>

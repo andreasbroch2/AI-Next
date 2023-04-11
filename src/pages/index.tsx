@@ -55,7 +55,6 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getACFHomepage();
   const menuItems = await getNavMenu('PRIMARY')
   const footerMenuItems = await getNavMenu('FOOTER')
-  console.log(data)
   return {
     props: { data, preview, menuItems, footerMenuItems },
     revalidate: 10,
