@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://dksmarthome.dk
+Host: https://aiedgemarketing.com
 
 # Sitemaps
-Sitemap: https://dksmarthome.dk/sitemap.xml
+Sitemap: https://aiedgemarketing.com/sitemap.xml

@@ -7,8 +7,6 @@ async function fetchAPI(query = '', { variables }: Record<string, any> = {}) {
       'Authorization'
     ] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`
   }
-  console.log(API_URL)
-  console.log(JSON.stringify({query,variables,}))
   // WPGraphQL Plugin must be enabled
   const res = await fetch(API_URL, {
     headers,
@@ -18,7 +16,6 @@ async function fetchAPI(query = '', { variables }: Record<string, any> = {}) {
       variables,
     }),
   })
-  console.log(res)
   const json = await res.json()
   if (json.errors) {
     console.error(json.errors)
@@ -89,7 +86,7 @@ export async function getAllProductsWithSlug() {
 }
 export async function getAllProducts() {
   const data = await fetchAPI(`
-  query NewQuery {
+  {
     products {
       edges {
         node {
@@ -124,7 +121,7 @@ export async function getAllProducts() {
               sourceUrl
             }
           }
-          featuredImage {
+          featuredImage { 
             node {
               altText
               sourceUrl
@@ -246,13 +243,28 @@ export async function getSinglePage(slug) {
 }
 export async function getSingleProduct(slug) {
   const data = await fetchAPI(`
-  query GET_PRODUCT($slug: ID!) {
-	  product(id: ${slug}, idType: SLUG) {
+  query GET_PRODUCT {
+	  product(id: "${slug}", idType: SLUG) {
 	    id
 	    title
 	    content
 	    slug
 	    uri
+      productId
+      image {
+        id
+        uri
+        title
+        srcSet
+        sourceUrl
+        altText
+        }
+        ... on SimpleProduct {
+          price
+          id
+          regularPrice(format: RAW)
+          salePrice(format: RAW)
+          }
       seo {
         breadcrumbs {
           text

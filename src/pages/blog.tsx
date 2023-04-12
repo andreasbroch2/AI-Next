@@ -40,9 +40,9 @@ export async function getStaticProps() {
 	return {
 		props: {
 			data: data || {},
-            menuItems: menuItems,
-            allPosts: allPosts,
-            footerMenuItems: footerMenuItems,
+      menuItems: menuItems,
+      allPosts: allPosts,
+      footerMenuItems: footerMenuItems,
 		},
 		/**
          * Revalidate means that if a new request comes to server, then every 1 sec it will check

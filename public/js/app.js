@@ -22,7 +22,6 @@
     let flowContainers = document.querySelectorAll(".flow-container");
     flowContainers.forEach(function(flowContainer) {
       if (isInViewport(flowContainer)) {
-        console.log('in viewport');
         flowAnimation();
         window.removeEventListener("scroll", scrollHandler); // remove event listener
       }

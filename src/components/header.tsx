@@ -3,6 +3,7 @@ import Link from 'next/link'
 import NavigationMenu from './nav-menu'
 // import image component
 import Image from 'next/image'
+import CartIcon from './woocommerce/mini-cart'
 
 export default function Header({ menuItems }) {
   // A function that triggers the menu to open when the hamburger icon is clicked
@@ -26,6 +27,7 @@ export default function Header({ menuItems }) {
           </div>
         </div>
         <NavigationMenu hidden={true} menuItems={menuItems} textColor={"secondary"} />
+        <CartIcon />
       </header>
     </>
   )
