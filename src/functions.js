@@ -159,13 +159,13 @@ const isProductInCart = ( existingProductsInCart, productId ) => {
  */
 export const removeItemFromCart = ( productId ) => {
 
-	let existingCart = localStorage.getItem( 'woo-next-cart' );
+	let existingCart = localStorage.getItem( 'cart_state' );
 	existingCart = JSON.parse( existingCart );
 
 	// If there is only one item in the cart, delete the cart.
-	if ( 1 === existingCart.products.length ) {
-
-		localStorage.removeItem( 'woo-next-cart' );
+	if ( 1 === existingCart.length ) {
+		
+		localStorage.removeItem( 'cart_state' );
 		return null;
 
 	}
@@ -245,7 +245,7 @@ export const getFormattedCart = ( data ) => {
 };
 
 export const createCheckoutData = ( order ) => {
-
+	console.log('createCheckoutData', order)
 	// Set the billing Data to shipping, if applicable.
 	const billingData = order.billingDifferentThanShipping ? order.billing : order.shipping;
 

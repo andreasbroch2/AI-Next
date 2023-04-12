@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { useContext, useState } from 'react';
 import { useCart } from "../context/AppContext";
-import { getFormattedCart, getUpdatedItems } from '../../functions';
 import CartItem from "./CartItem";
 import { v4 } from 'uuid';
 
@@ -9,22 +8,6 @@ const CartItemsContainer = () => {
 	const { cartState, setCartState } = useCart();
 	var clearCartProcessing	= false;
 	var updateCartProcessing	= false;
-	const handleRemoveProductClick = ( event, cartKey, products ) => {
-		event.stopPropagation();
-		if ( products.length ) {
-			// By passing the newQty to 0 in updateCart Mutation, it will remove the item.
-			const newQty = 0;
-			const updatedItems = getUpdatedItems( products, newQty, cartKey );
-			updateCart( {
-				variables: {
-					input: {
-						clientMutationId: v4(),
-						items: updatedItems
-					}
-				},
-			} );
-		}
-	};
 	// Clear the entire cart.
 	const handleClearCart = ( event ) => {
 		event.stopPropagation();
@@ -32,9 +15,17 @@ const CartItemsContainer = () => {
 		setCartState( [] );
 		clearCartProcessing	= false;
 	}
+	//Handle the remove product click.
+	const handleRemoveProductClick = (event, id ) => {
+		event.stopPropagation();
+		updateCartProcessing	= true;
+		// Remove the product with the index number of id
+		setCartState ( cartState.filter( ( item, index ) => index !== id ) );
+		updateCartProcessing	= false;
+	}
 	return (
 		<div className="cart product-cart-container container mx-auto my-32 px-4 xl:px-0">
-			{ cartState.length >= 0 ? (
+			{ cartState.length > 0 ? (
 				<div className="woo-next-cart-wrapper container">
 					<div className="cart-header grid grid-cols-2 gap-4">
 						<h1 className="text-2xl mb-5 uppercase">Cart</h1>
@@ -62,8 +53,15 @@ const CartItemsContainer = () => {
 								</thead>
 								<tbody>
 								{ cartState.length && (
-									cartState.map( item => (
-										<th>{ item.productId }</th>
+									cartState.map(( item, index) => (
+										<CartItem
+										key={ index }
+										id= {index}
+										item={ item }
+										updateCartProcessing={ updateCartProcessing }
+										products={ cartState }
+										handleRemoveProductClick={ handleRemoveProductClick }
+									/>
 									) )
 								) }
 								</tbody>
@@ -96,7 +94,7 @@ const CartItemsContainer = () => {
 			) : (
 				<div className="container mx-auto my-32 px-4 xl:px-0">
 					<h2 className="text-2xl mb-5">No items in the cart</h2>
-					<Link href="/">
+					<Link href="/products">
 						<button className="bg-purple-600 text-white px-5 py-3 rounded-sm">
 							<span className="woo-next-cart-checkout-txt">Add New Products</span>
 							<i className="fas fa-long-arrow-alt-right"/>

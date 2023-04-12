@@ -3,7 +3,6 @@ import { FaShoppingCart } from "react-icons/fa";
 
 export default function CartIcon() {
   const { cartState } = useCart();
-  console.log('cartState', cartState);
   // Return the cart icon with the number of items in the cart if there are any
     return (
         <div className="flex items-center">

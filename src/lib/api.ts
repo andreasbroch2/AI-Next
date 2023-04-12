@@ -8,7 +8,7 @@ async function fetchAPI(query = '', { variables }: Record<string, any> = {}) {
     ] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`
   }
   // WPGraphQL Plugin must be enabled
-  const res = await fetch(API_URL, {
+  const res = await fetch('https://aiedgemarketing.ditsmartehjem.dk/graphql', {
     headers,
     method: 'POST',
     body: JSON.stringify({
@@ -23,7 +23,32 @@ async function fetchAPI(query = '', { variables }: Record<string, any> = {}) {
   }
   return json.data
 }
-
+export async function checkoutMutation(input){
+  const data = await fetchAPI(`
+  mutation CHECKOUT_MUTATION( $input: CheckoutInput! ){
+    checkout(input: $input) {
+      clientMutationId
+      order {
+        id
+        orderKey
+        orderNumber
+        status
+        refunds {
+          nodes {
+            amount
+          }
+        }
+      }
+      result
+      redirect
+    }
+  }
+  `,
+  {
+    variables: { input },
+  })
+  return data?.checkout
+}
 export async function getPreviewPost(id, idType = 'DATABASE_ID') {
   const data = await fetchAPI(
     `

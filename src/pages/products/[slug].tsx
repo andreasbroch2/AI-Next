@@ -11,7 +11,6 @@ import Header from '../../components/header'
 
 export default function Post({ product, preview, footerMenuItems, menuItems }) {
   const router = useRouter()
-  console.log(product)
   if (!router.isFallback && !product?.slug) {
     return <ErrorPage statusCode={404} />
   }
