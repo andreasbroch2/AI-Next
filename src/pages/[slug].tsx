@@ -20,7 +20,7 @@ export default function Page( {data, preview = false, menuItems, footerMenuItems
           <title>{data?.seo.title}</title>
         </Head>
         <Container>
-          	<Header menuItems={menuItems}/>
+          	<Header menuItems={menuItems}/> 
 			  <div className='entry-content'>{imgConverter(data.content)}</div>
         </Container>
       </Layout>
