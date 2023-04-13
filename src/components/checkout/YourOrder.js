@@ -16,8 +16,8 @@ const YourOrder = ({ cart }) => {
 							</tr>
 						</thead>
 						<tbody>
-							{cart.length ? (
-								cart.map((item, index) => (
+							{cart.products?.length ? (
+								cart.products.map((item, index) => (
 									<CheckoutCartItem key={index} item={item} />
 								))
 							) : null}
@@ -25,7 +25,7 @@ const YourOrder = ({ cart }) => {
 							<tr className="bg-gray-200">
 								<td className="" />
 								<td className="woo-next-checkout-total font-normal text-xl">Subtotal</td>
-								<td className="woo-next-checkout-total font-normal text-xl">12 $</td>
+								<td className="woo-next-checkout-total font-normal text-xl">{cart.totalProductsPrice}</td>
 							</tr>
 						</tbody>
 					</table>

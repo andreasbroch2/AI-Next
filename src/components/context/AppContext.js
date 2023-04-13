@@ -12,11 +12,11 @@ export function useCart() {
 export const AppProvider = (props) => {
 	const [cartState, setCartState] = useState(initialState);
 	useEffect(() => {
-		const data = window.localStorage.getItem('cart_state');
+		const data = window.localStorage.getItem('woo-next-cart');
 		if ( data !== null ) setCartState(JSON.parse(data));
 	  }, []);
 	useEffect(() => {
-		window.localStorage.setItem('cart_state', JSON.stringify(cartState));
+		window.localStorage.setItem('woo-next-cart', JSON.stringify(cartState));
 	}, [cartState])
 	return (
 		<CartContext.Provider value={{ cartState, setCartState }}>

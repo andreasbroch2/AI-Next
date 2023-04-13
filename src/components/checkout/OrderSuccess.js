@@ -6,7 +6,7 @@ const OrderSuccess = ( props ) => {
 		return null;
 	}
 
-	const responseData = response;
+	const responseData = response.checkout;
 
 	return (
 		<div className="container">

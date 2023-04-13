@@ -4,9 +4,13 @@ import Header from "../components/header";
 import { GetStaticProps } from 'next'
 import Container from "../components/container";
 import { getNavMenu } from "../lib/api";
+import Head from "next/head";
 
 const Checkout = ({preview, menuItems, footerMenuItems, data}) => (
 	<Layout preview={preview} footerMenuItems={footerMenuItems} data={data}>
+		<Head>
+          <title>Checkout</title>
+        </Head>
 		<Container>
 			<Header menuItems={menuItems} />
 		<div className="checkout container mx-auto my-8 px-4 xl:px-0">

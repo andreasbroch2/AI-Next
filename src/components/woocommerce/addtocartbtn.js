@@ -12,16 +12,48 @@ const AddToCart = (props) => {
     const {product} = props;
 
     const { setCartState } = useCart();
-
+    const productQryInput = {
+        clientMutationId: v4(), // Generate a unique id.
+        productId: product.productId,
+    };
     const [showViewCart, setShowViewCart] = useState(false);
-    const [addToCartLoading, setAddToCartLoading] = useState(false);
-
-    const handleAddToCartClick= () => {
-        setShowViewCart(true);
-        setAddToCartLoading(true);
-        setCartState(cartState => [...cartState, product]);
-        setAddToCartLoading(false);
+    const [requestError, setRequestError] = useState(null);
+    const {data, refetch} = useQuery(GET_CART, {
+        notifyOnNetworkStatusChange: true,
+        onCompleted: (res) => {
+            console.log('data', res);
+            // Update cart in the localStorage.
+            const updatedCart = getFormattedCart(res);
+            localStorage.setItem('woo-next-cart', JSON.stringify(updatedCart));
+        }
+    });
+    const handleAddToCartClick = async () => {
+        setRequestError(null);
+        await addToCart();
       }
+      const [addToCart, {
+        data: addToCartRes,
+        loading: addToCartLoading,
+        error: addToCartError
+    }] = useMutation(ADD_TO_CART, {
+        variables: {
+            input: productQryInput,
+        },
+        onCompleted: () => {
+            console.log('addToCartRes', data)
+            // On Success:
+            // 1. Make the GET_CART query to update the cart with new values in React context.
+            refetch();
+
+            // 2. Show View Cart Button
+            setShowViewCart(true)
+        },
+        onError: (error) => {
+            if (error) {
+                setRequestError(error?.graphQLErrors?.[0]?.message ?? '');
+            }
+        }
+    });
 
     return (
         <div>

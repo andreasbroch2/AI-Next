@@ -23,14 +23,14 @@ const CartItem = ({
 			<td className="woo-next-cart-element">
 				<Image width={100} height={100} src={item.image.sourceUrl} alt={item.image.altText} />
 			</td>
-			<td className="woo-next-cart-element">{item.title}</td>
-			<td className="woo-next-cart-element">{item.salePrice} $</td>
+			<td className="woo-next-cart-element">{item.name}</td>
+			<td className="woo-next-cart-element">{item.price} $</td>
 			{/* Qty Input */}
 			<td className="woo-next-cart-element woo-next-cart-qty text-center">
-				{1}
+				{item.qty}
 			</td>
 			<td className="woo-next-cart-element">
-				{item.salePrice} $
+				{item.totalPrice} $
 			</td>
 		</tr>
 	)

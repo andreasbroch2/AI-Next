@@ -25,7 +25,7 @@ const CartItemsContainer = () => {
 	}
 	return (
 		<div className="cart product-cart-container container mx-auto my-32 px-4 xl:px-0">
-			{ cartState.length > 0 ? (
+			{ cartState.products?.length > 0 ? (
 				<div className="woo-next-cart-wrapper container">
 					<div className="cart-header grid grid-cols-2 gap-4">
 						<h1 className="text-2xl mb-5 uppercase">Cart</h1>
@@ -52,8 +52,8 @@ const CartItemsContainer = () => {
 								</tr>
 								</thead>
 								<tbody>
-								{ cartState.length && (
-									cartState.map(( item, index) => (
+								{ cartState.products.length && (
+									cartState.products.map(( item, index) => (
 										<CartItem
 										key={ index }
 										id= {index}
