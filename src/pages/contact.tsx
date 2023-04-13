@@ -3,8 +3,7 @@ import Layout from '../components/layout';
 import Head from 'next/head';
 import Container from '../components/container';
 import Header from '../components/header';
-import { getSinglePage, getNavMenu } from '../lib/api';
-import imgConverter from '../lib/imgConverter';
+import { getNavMenu } from '../lib/api';
 import MailchimpSubscribe from "react-mailchimp-subscribe"
 import ContactForm from '../components/contactForm';
 
@@ -88,11 +87,10 @@ const Page = ({ data, preview = false, menuItems, footerMenuItems }) => {
     return (
         <Layout preview={preview} footerMenuItems={footerMenuItems} data={data}>
             <Head>
-                <title>{data?.seo.title}</title>
+                <title>Contact Us</title>
             </Head>
             <Container>
                 <Header menuItems={menuItems} />
-                <div className='entry-content'>{imgConverter(data.content)}</div>
                 <div className="container mx-auto my-12 flex flex-col md:flex-row gap-8">
                     <div className="basis-1/2">
                         <h2 className="mb-4">Få et tilbud</h2>
@@ -120,12 +118,10 @@ const Page = ({ data, preview = false, menuItems, footerMenuItems }) => {
 export default Page;
 
 export async function getStaticProps() {
-    const data = await getSinglePage('/kontakt');
     const menuItems = await getNavMenu('PRIMARY');
     const footerMenuItems = await getNavMenu('FOOTER');
     return {
         props: {
-            data: data || {},
             menuItems: menuItems,
             footerMenuItems: footerMenuItems,
         },
