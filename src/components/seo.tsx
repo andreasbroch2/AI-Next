@@ -13,7 +13,7 @@ export default function Seo({ seo, uri }) {
 		opengraphDescription,
 		opengraphTitle,
 		opengraphImage,
-		opengraphSiteName
+		opengraphSiteName 
 	} = seo;
 
 	const currentLocation = process.browser ? window.location.origin : null;
