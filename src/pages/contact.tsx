@@ -6,7 +6,7 @@ import Header from '../components/header';
 import { getNavMenu } from '../lib/api';
 import MailchimpSubscribe from "react-mailchimp-subscribe"
 import ContactForm from '../components/contactForm';
-
+ 
 const Page = ({ data, preview = false, menuItems, footerMenuItems }) => {
     const router = useRouter();
     const url = "//dksmarthome.us21.list-manage.com/subscribe/post?u=cf54bb26d48dbc75d737c6030&amp;id=fb6a480747&amp;f_id=00dac2e1f0";
