@@ -17,7 +17,7 @@ export default function Header({ menuItems }) {
 
   return (
     <>
-      <header className="bg-white z-50 py-4 lg:flex lg:justify-between lg:items-center">
+      <header className="bg-white max-w-content mx-auto z-50 py-4 lg:flex lg:justify-between lg:items-center">
         <div className='flex justify-between items-center'>
           <Link href="/" className="hover:underline">
             <Image src="/favicon/AI Edge - Logo.png" alt="DK Smarthome - Logo" width={160} height={59} ></Image>
@@ -27,7 +27,6 @@ export default function Header({ menuItems }) {
           </div>
         </div>
         <NavigationMenu hidden={true} menuItems={menuItems} textColor={"secondary"} />
-        <CartIcon />
       </header>
     </>
   )

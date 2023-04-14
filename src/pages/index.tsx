@@ -2,17 +2,19 @@ import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import Container from '../components/container'
 import Layout from '../components/layout'
-import { getACFHomepage, getNavMenu } from '../lib/api'
+import { getACFHomepage, getAllPostsForHome, getNavMenu } from '../lib/api'
 import Header from '../components/header'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import Image from "next/image";
 import React from "react";
 import ContactForm from '../components/contactForm'
+import TextUSPBox from '../components/TextUSPBox'
+import PostGrid from '../components/postGrid'
 const parse = require('html-react-parser');
 
 
-export default function Index({ data, preview, menuItems, footerMenuItems, content }) {
+export default function Index({ data, preview, menuItems, footerMenuItems, allPosts }) {
   const router = useRouter();
   // If the page is not yet generated, this will be displayed
   // initially until getStaticProps() finishes running
@@ -32,8 +34,8 @@ export default function Index({ data, preview, menuItems, footerMenuItems, conte
           <section className='wp-block-cover alignfull hero-section'>
             <span className='wp-block-cover__background'></span>
             <Image src={data.homePage.heroImage.sourceUrl} alt={data.homePage.heroImage.altText} width={1920} height={1080} priority placeholder='blur' blurDataURL={`/_next/image?url=${data.homePage.heroImage.sourceUrl}&w=16&q=1`}></Image>
-            <div className='wp-block-cover__inner-container'>
-              <div className='flex items-center'>
+            <div className='max-w-content z-50'>
+              <div className='md:flex items-center py-8'>
                 <div className='wp-block-column is-layout-flow'>
                   <h1 className='text-white mb-8'>{data.homePage.heroHeadline}</h1>
                   <p className='text-white'>{data.homePage.heroDescription}</p>
@@ -45,7 +47,11 @@ export default function Index({ data, preview, menuItems, footerMenuItems, conte
               </div>
             </div>
           </section>
-
+          <h2 className='mt-8'>Popular Posts</h2>
+          <PostGrid posts={allPosts?.edges ?? []} />
+          <TextUSPBox />
+          <h2 className='mt-8'>Recent Posts</h2>
+          <PostGrid posts={allPosts?.edges ?? []} sortBy='date'/>
         </div>
       </Container>
     </Layout>
@@ -55,8 +61,9 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getACFHomepage();
   const menuItems = await getNavMenu('PRIMARY')
   const footerMenuItems = await getNavMenu('FOOTER')
+  const allPosts = await getAllPostsForHome(preview);
   return {
-    props: { data, preview, menuItems, footerMenuItems },
+    props: { data, preview, menuItems, footerMenuItems, allPosts },
     revalidate: 10,
   }
 }
