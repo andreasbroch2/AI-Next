@@ -23,8 +23,10 @@ const Page = ( {allPosts, data, preview = false, menuItems, footerMenuItems} ) =
         </Head>
         <Container>
           <Header menuItems={menuItems}/>
-          <div className='entry-content'>{imgConverter(data.content)}</div>
+            <section>
+              <h1 className='text-center'>Articles</h1>
               <Posts posts={allPosts?.edges ?? []}/>
+              </section>
         </Container>
       </Layout>
 	);
@@ -33,13 +35,13 @@ const Page = ( {allPosts, data, preview = false, menuItems, footerMenuItems} ) =
 export default Page;
 
 export async function getStaticProps() {
-    const data = await getSinglePage( '/blog');
+    const data = await getSinglePage('/blog');
     const menuItems = await getNavMenu('PRIMARY');
     const footerMenuItems = await getNavMenu('FOOTER');
     const allPosts = await getAllPostsForHome(false);
 	return {
 		props: {
-			data: data || {},
+      data: data,
       menuItems: menuItems,
       allPosts: allPosts,
       footerMenuItems: footerMenuItems,

@@ -10,7 +10,7 @@ module.exports = {
         success: '#0070f3',
         primary: "#FF7F50",
         secondary: "#5E17EB",
-        lightgreen: "#bbe3a6",
+        lightprimary: "#FF7F5025",
         light: "#5E17EB20"
       },
       spacing: {

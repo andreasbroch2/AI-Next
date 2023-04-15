@@ -17,6 +17,8 @@ export default function contactForm() {
             }),
         });
         const data = await response.json();
+        console.log(data)
+        return data;
     };
 
     return (
@@ -24,7 +26,7 @@ export default function contactForm() {
             <div>
                 <input
                     type="text"
-                    placeholder='Navn'
+                    placeholder='Name'
                     id="name"
                     value={name}
                     onChange={(event) => setName(event.target.value)}
@@ -34,7 +36,7 @@ export default function contactForm() {
             <div>
                 <input
                     type="email"
-                    placeholder='Din e-mail'
+                    placeholder='Email'
                     id="email"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
@@ -42,7 +44,7 @@ export default function contactForm() {
                 />
             </div>
             <div className="text-center">
-                <button className='btn' type="submit">Submit</button>
+                <button className='btn' type="submit">Join</button>
             </div>
         </form>
     );

@@ -6,7 +6,10 @@ const Post = ({ post }) => {
 		<div className="mb-8 relative">
 			<Link href={`/blog/${post?.slug}/`}>
 			<figure className="overflow-hidden relative h-64">
-				<Image className='blog-box-image relative' src={post?.featuredImage.node.sourceUrl} alt={post?.featuredImage.node.altText} fill title={post?.title ?? ''} sizes='100vw' />
+				<Image className='blog-box-image relative' src={post?.featuredImage.node.sourceUrl} alt={post?.featuredImage.node.altText} fill title={post?.title ?? ''} sizes="
+			(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw" />
 			</figure>
 			<div className='textbox'>
 				

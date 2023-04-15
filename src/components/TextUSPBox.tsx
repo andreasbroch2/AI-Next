@@ -1,9 +1,9 @@
 export default function TextUSPBox() {
     return (
-        <section className="bg-lightblue alignfull">
-            <div className="md:flex items-center max-w-[1280px] mx-auto py-8 md:py-16">
+        <section className="bg-lightprimary alignfull">
+            <div className="flex flex-col md:flex-row items-center max-w-[1280px] mx-4 md:mx-auto py-8 md:py-16 gap-8">
                 <div className="textbox basis-1/2">
-                    <h2>Make your life easier by automating you home and everyday life</h2>
+                    <h2>Make your life easier by using AI to save time and add value</h2>
                 </div>
                 <div className="bg-secondary rounded-xl shadow-xl p-6 md:p-12 basis-1/2">
                     <div className="uspbox-item flex items-center">
@@ -11,7 +11,7 @@ export default function TextUSPBox() {
                             <i className="fa-solid fa-check"></i>
                         </div>
                         <div className="text-white text-xl">
-                            <p className="!mb-0">Everything you need to know about smart homes</p>
+                            <p className="!mb-0">AI-Powered Marketing</p>
                         </div>
                     </div>
                     <div className="uspbox-item flex items-center">
@@ -19,7 +19,7 @@ export default function TextUSPBox() {
                             <i className="fa-solid fa-check"></i>
                         </div>
                         <div className="text-white text-xl">
-                            <p className="!mb-0">New content added weekly</p>
+                            <p className="!mb-0">Free Resources and Education</p>
                         </div>
                     </div>
                     <div className="uspbox-item flex items-center">
@@ -27,7 +27,7 @@ export default function TextUSPBox() {
                             <i className="fa-solid fa-check"></i>
                         </div>
                         <div className="text-white text-xl">
-                            <p className="!mb-0">Reviews, offers and much more!</p>
+                            <p className="!mb-0">Experienced Team</p>
                         </div>
                     </div>
                 </div>

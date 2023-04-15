@@ -22,7 +22,7 @@ const PostGrid = ( {posts, sortBy = "views"} ) => {
     // Only get 4 posts
     posts = posts.slice(0, 4);
 	return (
-		<div className="all-blog-posts-container container mx-auto grid grid-cols-1 md:grid-cols-4 gap-3 my-8">
+		<div className="all-blog-posts-container container mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3 my-8">
 			{
 				posts.map( ( post, index ) => {
 					return (

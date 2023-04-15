@@ -35,23 +35,27 @@ export default function Index({ data, preview, menuItems, footerMenuItems, allPo
             <span className='wp-block-cover__background'></span>
             <Image src={data.homePage.heroImage.sourceUrl} alt={data.homePage.heroImage.altText} width={1920} height={1080} priority placeholder='blur' blurDataURL={`/_next/image?url=${data.homePage.heroImage.sourceUrl}&w=16&q=1`}></Image>
             <div className='max-w-content z-50'>
-              <div className='md:flex items-center py-8'>
+              <div className='md:flex gap-8 items-center py-8'>
                 <div className='wp-block-column is-layout-flow'>
                   <h1 className='text-white mb-8'>{data.homePage.heroHeadline}</h1>
                   <p className='text-white'>{data.homePage.heroDescription}</p>
                 </div>
                 <div className='wp-block-column is-layout-flow'>
-                  <p className='text-primary'>{data.homePage.heroCta}</p>
-                      <ContactForm />
+                  <p className='text-white'>{data.homePage.heroCta}</p>
+                  <ContactForm />
                 </div>
               </div>
             </div>
           </section>
-          <h2 className='mt-8'>Popular Posts</h2>
-          <PostGrid posts={allPosts?.edges ?? []} />
+          <section>
+            <h2 className='mt-8'>Popular Posts</h2>
+            <PostGrid posts={allPosts?.edges ?? []} />
+          </section>
           <TextUSPBox />
-          <h2 className='mt-8'>Recent Posts</h2>
-          <PostGrid posts={allPosts?.edges ?? []} sortBy='date'/>
+          <section>
+            <h2 className='mt-8'>Recent Posts</h2>
+            <PostGrid posts={allPosts?.edges ?? []} sortBy='date' />
+          </section>
         </div>
       </Container>
     </Layout>

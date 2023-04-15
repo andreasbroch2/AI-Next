@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   const { name, email, message } = req.body;
 
   const transporter = nodemailer.createTransport({
-    host: 'mail.dksmarthome.dk',
+    host: 'mail.ditsmartehjem.dk',
     port: 465,
     auth: {
       user: process.env.EMAIL_USERNAME,
