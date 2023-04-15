@@ -15,8 +15,7 @@ export default function Seo({ seo, uri }) {
 		opengraphImage,
 		opengraphSiteName
 	} = seo;
-	const currentLocation = process.browser ? window.location.origin : null;
-	const opengraphUrl = (process.env.NEXT_PUBLIC_NEXTJS_SITE_URL ? process.env.NEXT_PUBLIC_NEXTJS_SITE_URL : currentLocation) + uri;
+	const opengraphUrl = process.env.NEXT_PUBLIC_NEXTJS_SITE_URL + uri;
 	return (
 		<>
 		<Head>

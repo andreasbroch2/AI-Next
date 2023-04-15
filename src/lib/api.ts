@@ -427,6 +427,7 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
       post(id: $id, idType: $idType) {
         ...PostFields
         content
+        uri
         seo {
           breadcrumbs {
             text
