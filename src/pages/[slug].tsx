@@ -51,14 +51,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const allPages = await getAllPagesWithSlug();
-	allPages.edges.map(({ node }) => {
-	if(node.slug === 'blog' || node.slug === 'cart' || node.slug === 'checkout' || node.slug === '404') {
-		return;
-	}
-	return node;
+	// Remove node if slug is one of following: 'blog' 'cart' 'checkout''404'
+	const filteredPages = allPages.edges.filter(({ node }) => {
+		return node.slug !== 'blog' && node.slug !== 'cart' && node.slug !== 'checkout' && node.slug !== '404';
 	});
+
 	return {
-		paths: allPages.edges.map(({ node }) => `/${node.slug}`) || [],
+		paths: filteredPages?.map(({ node }) => `/${node.slug}`) || [],
 		fallback: 'blocking',
 	};
 }
