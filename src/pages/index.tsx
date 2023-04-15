@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import Container from '../components/container'
 import Layout from '../components/layout'
-import { getACFHomepage, getAllPostsForHome, getNavMenu } from '../lib/api'
+import { getACFHomepage, getAllPostsForHome, getNavMenu, getSinglePage } from '../lib/api'
 import Header from '../components/header'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
@@ -14,7 +14,7 @@ import PostGrid from '../components/postGrid'
 const parse = require('html-react-parser');
 
 
-export default function Index({ data, preview, menuItems, footerMenuItems, allPosts }) {
+export default function Index({ data, preview, menuItems, footerMenuItems, allPosts, homePage }) {
   const router = useRouter();
   // If the page is not yet generated, this will be displayed
   // initially until getStaticProps() finishes running
@@ -22,7 +22,7 @@ export default function Index({ data, preview, menuItems, footerMenuItems, allPo
     return <div>Indlæser...</div>;
   }
   return (
-    <Layout preview={preview} footerMenuItems={footerMenuItems} data={data}>
+    <Layout preview={preview} footerMenuItems={footerMenuItems} data={homePage}>
       <Script src="https://kit.fontawesome.com/bf7aea6dc3.js" />
       <Head>
         <title>{data.seo.title}</title>
@@ -63,11 +63,12 @@ export default function Index({ data, preview, menuItems, footerMenuItems, allPo
 }
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getACFHomepage();
+  const homePage = await getSinglePage('/');
   const menuItems = await getNavMenu('PRIMARY')
   const footerMenuItems = await getNavMenu('FOOTER')
   const allPosts = await getAllPostsForHome(preview);
   return {
-    props: { data, preview, menuItems, footerMenuItems, allPosts },
+    props: { data, preview, menuItems, footerMenuItems, allPosts, homePage },
     revalidate: 10,
   }
 }

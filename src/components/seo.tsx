@@ -15,7 +15,6 @@ export default function Seo({ seo, uri }) {
 		opengraphImage,
 		opengraphSiteName
 	} = seo;
-
 	const currentLocation = process.browser ? window.location.origin : null;
 	const opengraphUrl = (process.env.NEXT_PUBLIC_NEXTJS_SITE_URL ? process.env.NEXT_PUBLIC_NEXTJS_SITE_URL : currentLocation) + uri;
 	return (
@@ -27,7 +26,7 @@ export default function Seo({ seo, uri }) {
 				title={title}
 				description={opengraphDescription || metaDesc}
 				// String repalcement to remove .ditsmartehjem from canonical url
-				canonical={canonical.replace('.ditsmartehjem', '')}
+				canonical={opengraphUrl}
 				openGraph={{
 					type: 'website',
 					locale: 'en_US',

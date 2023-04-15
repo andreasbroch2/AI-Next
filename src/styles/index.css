@@ -425,7 +425,7 @@ ul.checkmark-list-green {
 }
 
 section {
-  @apply my-8 md:my-16 max-w-[1280px] mx-4 md:mx-auto;
+  @apply my-8 max-w-[1280px] mx-4 md:mx-auto;
 }
 
 .accordion {
