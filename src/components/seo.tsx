@@ -15,7 +15,7 @@ export default function Seo({ seo, uri }) {
 		opengraphImage,
 		opengraphSiteName
 	} = seo;
-	const opengraphUrl = process.env.NEXT_PUBLIC_NEXTJS_SITE_URL + uri;
+	const opengraphUrl = process.env.NEXT_PUBLIC_NEXTJS_SITE_URL + uri; 
 	return (
 		<>
 		<Head>
