@@ -55,7 +55,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	if(node.slug === 'blog' || node.slug === 'cart' || node.slug === 'checkout' || node.slug === '404') {
 		return;
 	}
-	console.log(node.slug);
+	return node;
 	});
 	return {
 		paths: allPages.edges.map(({ node }) => `/${node.slug}`) || [],
