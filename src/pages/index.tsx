@@ -18,7 +18,7 @@ export default function Index({ data, preview, menuItems, footerMenuItems, allPo
   const router = useRouter();
   // If the page is not yet generated, this will be displayed
   // initially until getStaticProps() finishes running
-  if (router.isFallback) {
+  if (!homePage.uri) {
     return <div>Indlæser...</div>;
   }
   return (
