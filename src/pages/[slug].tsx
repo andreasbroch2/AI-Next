@@ -53,7 +53,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	const allPages = await getAllPagesWithSlug();
 	// Remove node if slug is one of following: 'blog' 'cart' 'checkout''404'
 	const filteredPages = allPages.edges.filter(({ node }) => {
-		return node.slug !== 'blog' && node.slug !== 'cart' && node.slug !== 'checkout' && node.slug !== '404';
+		return node.slug !== 'blog' && node.slug !== 'cart' && node.slug !== 'checkout' && node.slug !== '404' && node.slug !== 'front-page';
 	});
 
 	return {
