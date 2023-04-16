@@ -5,7 +5,7 @@ import Container from '../components/container';
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Header from '../components/header';
 import imgConverter from '../lib/imgConverter';
-import { getAllPagesWithSlug, getSinglePage, getNavMenu } from '../lib/api';
+import { getAllPagesWithSlug, getSinglePage, getNavMenu } from '../lib/api'; 
 
 export default function Page({ data, preview = false, menuItems, footerMenuItems }) {
 	const router = useRouter();
