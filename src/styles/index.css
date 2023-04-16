@@ -233,7 +233,7 @@ body.single-post {
   @apply flex flex-col md:flex-row;
   .wp-block-column {
     @apply flex flex-col basis-0;
-    flex-grow: 1;
+    flex-grow: 1; 
   }
 }
 .max-w-content{
