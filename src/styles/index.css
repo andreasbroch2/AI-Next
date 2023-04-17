@@ -383,6 +383,9 @@ footer {
   h2, h3, h4{
     @apply mb-4;
   }
+  img{
+    @apply my-4;
+  }
 }
 ul.price-items-list {
   @apply text-xl leading-loose;
