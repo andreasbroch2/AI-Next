@@ -57,14 +57,15 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                   </div>
                   <div className="hidden md:basis-1/3 md:block">
                     <div className='sticky top-6'>
-                      <div className='ad-container flex place-content-center pt-6'>
+                      <div className='ad-container flex place-content-center items-center pt-6 flex-col'>
+                        <h3 className='text-center mb-4'>Sign up for a FREE Copy.ai account!</h3>
                         <a href="https://www.copy.ai/?via=ai-edge-marketing" target='_blank'>
-                          <Image src="/images/copy-ai-ad-2.gif_id=54986360-a9f0-48c1-bb3f-4bb224eede82&table=block&spaceId=5b521c02-4d41-434b-99b4-9837e95675ed&expirationTimestamp=1681813477337&signature=4kQVMEEcifDare8E_WHeryhQBVjtap8Xs5rKq76qiVM" alt="Copy.ai Ad" width={300} height={300} />
+                          <Image src="/images/copy-ai-ad-2.gif" alt="Copy.ai Ad" width={300} height={300} />
                         </a>
                       </div>
                       <div className="toc-container mt-6 w-fit">
                         <div className="info">
-                          <p className="headlines">Indholdsfortegnelse</p>
+                          <p className="headlines">Table of contents</p>
                           <div className="ib-toc-separator" style={{ height: "2px" }}></div>
                           <Toc />
                         </div>
