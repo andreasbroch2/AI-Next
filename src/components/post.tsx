@@ -8,7 +8,7 @@ const Post = ({ post }) => {
 			<figure className="overflow-hidden relative h-64">
 				<Image className='blog-box-image relative' src={post?.featuredImage.node.sourceUrl} alt={post?.featuredImage.node.altText} fill title={post?.title ?? ''} sizes="
 			(max-width: 768px) 100vw,
-            (max-width: 1200px) 50vw,
+            (max-width: 1280px) 50vw,
             33vw" />
 			</figure>
 			<div className='textbox'>

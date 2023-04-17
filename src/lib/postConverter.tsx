@@ -4,20 +4,17 @@ const parse = require('html-react-parser');
 
 export default function postConverter(element) {
   var cleanJsx = parse(element);
-  var imgNumber = 0;
   function reactNodeToImg(node) {
     return React.Children.map(node, (node) => {
       if (!node.type) {
         return node;
       }
       if (node.type === 'img') {
-        if (imgNumber === 0) {
-          imgNumber++;
-          return React.createElement(Image, { src: node.props.src, alt: node.props.alt, width: node.props.width, height: node.props.height, priority: true })
+        if (node.props.width && node.props.height) {
+          return React.createElement(Image, { src: node.props.src, alt: node.props.alt, width: node.props.width, height: node.props.height})
         }
         else {
-          imgNumber++;
-          return React.createElement(Image, { src: node.props.src, alt: node.props.alt, width: node.props.width, height: node.props.height })
+          return React.createElement(Image, { src: node.props.src, alt: node.props.alt, width: 600, height: 600})
         }
 
       }

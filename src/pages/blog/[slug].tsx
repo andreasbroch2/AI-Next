@@ -21,7 +21,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
 
   return (
     <>
-    <Layout preview={preview} footerMenuItems={footerMenuItems} data={post}>
+      <Layout preview={preview} footerMenuItems={footerMenuItems} data={post}>
         <Container>
           <Header menuItems={menuItems} />
           {router.isFallback ? (
@@ -37,9 +37,9 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                     property="og:image"
                     content={post.featuredImage?.node.sourceUrl} />
                 </Head>
-                <div className="alignfull flex flex-wrap">
+                <div className="alignfull flex flex-col md:flex-row">
                   <div className="md:basis-1/2 w-full h-72 md:h-[420px] relative cover">
-                    <Image className="rounded-none object-cover" src={post.featuredImage?.node.sourceUrl} alt={post.featuredImage?.node.altText} fill priority sizes={"100vw"}/>
+                    <Image className="rounded-none object-cover" src={post.featuredImage?.node.sourceUrl} alt={post.featuredImage?.node.altText} fill priority sizes={"100vw"} />
                   </div>
                   <div className="md:basis-1/2 bg-light flex items-center w-full">
                     <div className="max-w-xl px-4 py-12 mx-auto">
@@ -48,7 +48,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                   </div>
                 </div>
                 <div className="entry-content md:px-4 flex">
-                  <div className="md:basis-2/3">
+                  <div className="md:basis-2/3 px-4">
                     <div className="max-w-3xl mx-auto">
                       <div id="article-text">
                         {postConverter(cleanElement)}
@@ -56,11 +56,18 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                     </div>
                   </div>
                   <div className="hidden md:basis-1/3 md:block">
-                    <div className="toc-container mt-6 sticky top-6 w-fit">
-                      <div className="info">
-                        <p className="headlines">Indholdsfortegnelse</p>
-                        <div className="ib-toc-separator" style={{ height: "2px" }}></div>
-                        <Toc />
+                    <div className='sticky top-6'>
+                      <div className='ad-container flex place-content-center pt-6'>
+                        <a href="https://www.copy.ai/?via=ai-edge-marketing" target='_blank'>
+                          <Image src="/images/copy-ai-ad-2.gif_id=54986360-a9f0-48c1-bb3f-4bb224eede82&table=block&spaceId=5b521c02-4d41-434b-99b4-9837e95675ed&expirationTimestamp=1681813477337&signature=4kQVMEEcifDare8E_WHeryhQBVjtap8Xs5rKq76qiVM" alt="Copy.ai Ad" width={300} height={300} />
+                        </a>
+                      </div>
+                      <div className="toc-container mt-6 w-fit">
+                        <div className="info">
+                          <p className="headlines">Indholdsfortegnelse</p>
+                          <div className="ib-toc-separator" style={{ height: "2px" }}></div>
+                          <Toc />
+                        </div>
                       </div>
                     </div>
                   </div>
