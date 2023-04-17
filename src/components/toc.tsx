@@ -49,7 +49,7 @@ const useHeadingsData = () => {
     }, []);
 
     return { nestedHeadings };
-};
+}; 
 
 const getNestedHeadings = (headingElements) => {
     const nestedHeadings = [];
