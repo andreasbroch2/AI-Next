@@ -56,11 +56,11 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                     </div>
                   </div>
                   <div className="hidden md:basis-1/3 md:block">
-                    <div className='sticky top-6'>
-                      <div className='ad-container flex place-content-center items-center pt-6 flex-col'>
+                    <div className='sticky top-6 max-h-[95vh] overflow-y-auto'>
+                      <div className='ad-container flex place-content-center items-center mt-6 flex-col'>
                         <h3 className='text-center mb-4'>Sign up for a FREE Copy.ai account!</h3>
                         <a href="https://www.copy.ai/?via=ai-edge-marketing" target='_blank'>
-                          <Image src="/images/copy-ai-ad-2.gif" alt="Copy.ai Ad" width={300} height={300} />
+                          <img src="/images/copy-ai-ad-2.gif" alt="Copy.ai Ad" width={300} height={300} />
                         </a>
                       </div>
                       <div className="toc-container mt-6 w-fit">
