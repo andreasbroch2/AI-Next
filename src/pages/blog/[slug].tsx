@@ -63,7 +63,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                           <img src="/images/copy-ai-ad-2.gif" alt="Copy.ai Ad" width={300} height={300} />
                         </a>
                       </div>
-                      <div className="toc-container mt-6 w-fit">
+                      <div className="toc-container mt-6 w-fit mx-auto">
                         <div className="info">
                           <p className="headlines">Table of contents</p>
                           <div className="ib-toc-separator" style={{ height: "2px" }}></div>
