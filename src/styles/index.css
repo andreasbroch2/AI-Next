@@ -187,7 +187,7 @@ body.single-post {
   .entry-content {
     &>* 
     ul {
-      @apply list-disc list-inside ml-4;
+      @apply list-disc list-inside ml-4 my-4;
 
       li {
         @apply mb-4;
@@ -239,16 +239,16 @@ body.single-post {
 .max-w-content{
   max-width: 1280px;
 }
-.ib-block-toc,
-.toc-container {
-  padding: 15px;
+.single-post 
+div.toc-container {
+  @apply p-4;
   margin-bottom: 20px;
   background: #fbfcfd;
   border-radius: 7px;
   border: 1px solid #ddd;
 
-  .headlines {
-    padding: 10px 20px;
+  p.headlines {
+    @apply mb-4;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -262,7 +262,29 @@ body.single-post {
     background: #333;
   }
 }
+.single-post div.toc-container{ 
+  p{
+    @apply mb-0;
+  }
+  nav {
 
+  ul {
+    @apply ml-0 my-0;
+    li{
+      @apply mb-0;
+      font-size: clamp(0.8rem, 2vw, 1rem);
+    line-height: normal;
+    ul{
+      @apply ml-6 mb-0;
+    }
+  }
+  }
+  a {
+  color: unset;
+    text-decoration: none;
+}
+}
+}
 .ib-toc-container .ib-toc-anchors ul,
 .ib-toc-container .ib-toc-anchors ol {
   padding-left: 45px
@@ -349,12 +371,13 @@ form.form, .form {
 }
 .single-post .entry-content{
   ul {
-    list-style-position: inside;
-    list-style-type: disc;
+    @apply list-disc list-inside ml-4 my-6;
     a:hover{
       @apply text-primary;
     }
     li{
+      @apply mb-4;
+      font-size: clamp(1rem, 2vw, 1.1rem);
       ul{
         @apply ml-6;
       }
@@ -569,10 +592,6 @@ footer {
 
 body.single-post {
   .entry-content {
-    ul {
-      @apply list-disc list-inside;
-    }
-
     p {
       @apply mb-3;
       font-size: clamp(1rem, 2vw, 1.1rem);

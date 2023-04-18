@@ -122,7 +122,7 @@ export default function TableOfContents () {
     useIntersectionObserver(setActiveId);
 
     return (
-        <nav aria-label="Table of contents"  className="text ib-toc-container toc-table py-5">
+        <nav aria-label="Table of contents"  className="text ib-toc-container toc-table py-4">
             <Headings headings={nestedHeadings} activeId={activeId} />
         </nav>
     );
