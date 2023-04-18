@@ -90,7 +90,7 @@ export const getStaticProps: GetStaticProps = async ({
   const menuItems = await getNavMenu('PRIMARY');
   const footerMenuItems = await getNavMenu('FOOTER');
   var cleanElement = data.post.content.replace(/\n/g, '')
-  cleanElement = cleanElement.replace(/href=.https:\/\/aiedgemarketing\.ditsmartehjem\.dk/g, 'href="https://aiedgemarketing.com');
+  cleanElement = cleanElement.replace(/href=.https:\/\/aiedgemarketing\.ditsmartehjem\.dk/g, "href='https://aiedgemarketing.com");
   return {
     props: {
       preview,
