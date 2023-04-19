@@ -71,7 +71,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                       <div className='ad-container flex place-content-center items-center mt-6 flex-col'>
                         <h3 className='text-center mb-4'>Sign up for a FREE Copy.ai account!</h3>
                         <a href="https://www.copy.ai/?via=ai-edge-marketing" target='_blank'>
-                          <Image src="/images/copy-ai-ad.png" alt="Copy.ai Ad" width={300} height={300} />
+                          <Image src="/images/copy-ai-ad.png" alt="Copy.ai Ad" width={300} height={300} priority/>
                         </a>
                       </div>
                       <div className="toc-container mt-6 w-fit mx-auto">
