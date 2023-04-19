@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import NavigationMenu from './nav-menu'
 import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
 import flatListToHierarchical from '../lib/flatListToHierarchical'
@@ -46,7 +45,12 @@ export default function Header({ menuItems }) {
                         return (
                             // Insert classes from fetch
                             <li key={index} className={`${item.node.cssClasses} text-secondary mb-2 md:mb-0 text-lg lg:px-12`}>
+                              {item.node.url == '#' && ( 
+                                <><p className='text-black'>{item.node.label}</p><hr></hr></>
+                              )}
+                              {item.node.url != '#' && ( 
                                 <Link href={`${item.node.url}`}>{item.node.label ?? ''}</Link>
+                              )}
                                 {item.node.childItems && item.node.childItems.edges.length > 0 && (
                                     <ul className="sub-menu">
                                         {item.node.childItems.edges.map((childItem, index) => {
