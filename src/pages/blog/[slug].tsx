@@ -67,7 +67,6 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                         <div className="info">
                           <p className="headlines">Table of contents</p>
                           <div className="ib-toc-separator" style={{ height: "2px" }}></div>
-                          <Toc />
                           <ServerToc html={post?.content} />
                         </div>
                       </div>
@@ -91,8 +90,8 @@ export const getStaticProps: GetStaticProps = async ({
   const menuItems = await getNavMenu('PRIMARY');
   const footerMenuItems = await getNavMenu('FOOTER');
   var cleanElement = data.post.content.replace(/\n/g, '')
-  cleanElement = cleanElement.replace(/href='https:\/\/aiedgemarketing\.ditsmartehjem\.dk/g, "href='https://aiedgemarketing.com");
-  cleanElement = cleanElement.replace(/href="https:\/\/aiedgemarketing\.ditsmartehjem\.dk/g, 'href="https://aiedgemarketing.com');
+  cleanElement = cleanElement.replace(/href='https:\/\/aiedgemarketing\.ditsmartehjem\.dk/g, "href='");
+  cleanElement = cleanElement.replace(/href="https:\/\/aiedgemarketing\.ditsmartehjem\.dk/g, 'href="');
   return {
     props: {
       preview,
