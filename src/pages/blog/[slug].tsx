@@ -10,11 +10,11 @@ import PostTitle from '../../components/post-title'
 import { getAllPostsWithSlug, getPostAndMorePosts, getNavMenu } from '../../lib/api'
 import Image from 'next/image'
 import Toc from '../../components/toc'
+import ServerToc from '../../components/ServerToc'
 
 
 export default function Post({ post, preview, menuItems, footerMenuItems, cleanElement }) {
   const router = useRouter()
-
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
   }
@@ -68,6 +68,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                           <p className="headlines">Table of contents</p>
                           <div className="ib-toc-separator" style={{ height: "2px" }}></div>
                           <Toc />
+                          <ServerToc html={post?.content} />
                         </div>
                       </div>
                     </div>
