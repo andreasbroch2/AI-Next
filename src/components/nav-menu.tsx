@@ -3,28 +3,10 @@ import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 
 
-export default function NavigationMenu({ menuItems, textColor, column = false, hidden, isOpen, onClose }) {
+export default function NavigationMenu({ menuItems, textColor, column = false, hidden  }) {
     if (!menuItems) {
         return null;
     }
-    const menuRef = useRef(null);
-    useEffect(() => {
-      const handleClickOutside = (event) => {
-        console.log('isOpen: ', isOpen)
-        if (isOpen && menuRef.current && !menuRef.current.contains(event.target)) {
-            console.log('click outside')
-            onClose()
-        }
-      };
-  
-      if (isOpen) {
-        window.addEventListener('click', handleClickOutside);
-      }
-  
-      return () => {
-        window.removeEventListener('click', handleClickOutside);
-      };
-    },[isOpen]);
     // If hidden then string should be 'hidden' else empty string	
     hidden = hidden ? 'hidden' : '';
     // Based on https://www.wpgraphql.com/docs/menus/#hierarchical-data
@@ -32,7 +14,7 @@ export default function NavigationMenu({ menuItems, textColor, column = false, h
 
     function renderMenu(items) {
         return (
-            <div className={`${hidden} ${isOpen ? 'open' : ''} bg-lightprimary z-50 mt-4 pb-4 md:p-4 lg:mt-0 lg:p-0 lg:bg-transparent lg:block menu-container`} ref={menuRef}>
+            <div className={`${hidden} bg-lightprimary z-50 mt-4 pb-4 md:p-4 lg:mt-0 lg:p-0 lg:bg-transparent lg:block menu-container`} ref={menuRef}>
                 <ul className={`menu lg:flex lg:-mx-4`}>
                     {items.map((item, index) => {
                         return (
