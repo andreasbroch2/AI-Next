@@ -515,18 +515,29 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
 }
 export async function getNavMenu(location) {
   const data = await fetchAPI(`
-    {
-      menuItems(where: {location: ${location}}) {
-        edges {
-          node {
-            label
-            url
-            cssClasses
-            childItems {
-              edges {
-                node {
-                  label
-                  url
+  {
+    menuItems(first: 10000, where: {location: ${location}}) {
+      edges {
+        node {
+          label
+          url
+          cssClasses
+          id
+          parentId
+          childItems(first: 100) {
+            edges {
+              node {
+                label
+                url
+                cssClasses
+                childItems {
+                  edges {
+                    node {
+                      label
+                      cssClasses
+                      url
+                    }
+                  }
                 }
               }
             }
@@ -534,6 +545,7 @@ export async function getNavMenu(location) {
         }
       }
     }
+  }
   `)
   return data?.menuItems
 }

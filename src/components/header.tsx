@@ -1,32 +1,99 @@
 import Link from 'next/link'
-// import nav menu
 import NavigationMenu from './nav-menu'
-// import image component
 import Image from 'next/image'
-import CartIcon from './woocommerce/mini-cart'
+import { useState, useRef, useEffect } from 'react'
+import flatListToHierarchical from '../lib/flatListToHierarchical'
+
 
 export default function Header({ menuItems }) {
-  // A function that triggers the menu to open when the hamburger icon is clicked
-  function toggleMenu() {
-    // Get the menu element
-    const menu = document.querySelector('.menu-container')
-    // toggle the hidden class
-    menu.classList.toggle('hidden')
-  }
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
+  const hierarchicalMenuItems = flatListToHierarchical(menuItems?.edges);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+          handleMenuToggle()
+      }
+    };
 
+    if (isOpen) {
+      window.addEventListener('click', handleClickOutside);
+    }
 
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  },[isOpen]);
+  const handleMenuToggle = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <>
-      <header className="bg-white max-w-content mx-auto z-50 py-4 lg:flex lg:justify-between lg:items-center px-4">
+      <header className="mx-auto z-50 py-4 lg:flex lg:justify-around lg:items-center px-4 md:px-12" ref={menuRef}>
         <div className='flex justify-between items-center'>
           <Link href="/" className="hover:underline">
             <Image src="/favicon/AI Edge - Logo.png" alt="DK Smarthome - Logo" width={160} height={64} priority></Image>
           </Link>
           <div className="lg:hidden">
-              <i className="fa-solid fa-bars text-2xl" onClick={toggleMenu}></i>
+              <i className="fa-solid fa-bars text-2xl z-[60]" onClick={handleMenuToggle}></i>
           </div>
         </div>
-        <NavigationMenu hidden={true} menuItems={menuItems} textColor={"secondary"} />
+        <nav
+            role="navigation">
+            <div className={`${isOpen ? 'open' : ''} menu-container`} >
+                <ul className={`menu lg:flex lg:-mx-4`}>
+                    {hierarchicalMenuItems.map((item, index) => {
+                        return (
+                            // Insert classes from fetch
+                            <li key={index} className={`${item.node.cssClasses} text-secondary mb-2 md:mb-0 text-lg lg:px-12`}>
+                                <Link href={`${item.node.url}`}>{item.node.label ?? ''}</Link>
+                                {item.node.childItems && item.node.childItems.edges.length > 0 && (
+                                    <ul className="sub-menu">
+                                        {item.node.childItems.edges.map((childItem, index) => {
+                                            if (childItem.node.cssClasses.includes('column-start')) {
+                                                return (
+                                                    <li key={index} className={`${childItem.node.cssClasses} text-black mb-2 md:mb-0 text-lg lg:px-6`}>
+                                                        <p>{childItem.node.label}</p>
+                                                        <hr></hr>
+                                                        {childItem.node.childItems && childItem.node.childItems.edges.length > 0 && (
+                                                            <ul className="sub-sub-menu">
+                                                                {childItem.node.childItems.edges.map((subChildItem, index) => {
+                                                                    return (
+                                                                        <li key={index} className={`${subChildItem.node.cssClasses} text-secondary mb-2 md:mb-0 text-lg lg:px-6`}>
+                                                                            <Link href={`${subChildItem.node.url}`}>{subChildItem.node.label ?? ''}</Link>
+                                                                        </li>
+                                                                    );
+                                                                })}
+                                                            </ul>
+                                                        )}
+                                                    </li>
+                                                )
+                                            }
+                                            return (
+                                                <li key={index} className={`${childItem.node.cssClasses} text-secondary mb-2 md:mb-0 text-lg lg:px-6`}>
+                                                    <Link href={`${childItem.node.url}`}>{childItem.node.label ?? ''}</Link>
+                                                    {childItem.node.childItems && childItem.node.childItems.edges.length > 0 && (
+                                                        <ul className="sub-sub-menu">
+                                                            {childItem.node.childItems.edges.map((subChildItem, index) => {
+                                                                return (
+                                                                    <li key={index} className={`${subChildItem.node.cssClasses} text-secondary mb-2 md:mb-0 text-lg lg:px-6`}>
+                                                                        <Link href={`${subChildItem.node.url}`}>{subChildItem.node.label ?? ''}</Link>
+                                                                    </li>
+                                                                );
+                                                            })}
+                                                        </ul>
+                                                    )}
+                                                </li>
+                                            );
+                                        })}
+                                    </ul>
+                                )}
+                            </li>
+                        );
+                    })}
+                </ul>
+            </div>
+        </nav>
       </header>
     </>
   )

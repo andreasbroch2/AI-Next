@@ -472,8 +472,77 @@ img {
   @apply rounded-none h-full w-full max-h-full object-cover object-center;
 }
 
-header img {
+header {
+  @apply bg-lightprimary;
+  height: 100px;
+  img {
   @apply rounded-none;
+}
+.menu-container{
+  @apply bg-lightprimary z-50 mt-4 pb-4 md:p-4 md:mt-0 md:p-0 md:block;
+  @media screen and (max-width: 1024px) {
+    position: fixed;
+    overflow-y: auto;
+    top: 0;
+    right: 0px;
+    width: 0px;
+    height: 100%;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+    margin: 0;
+    &.open{
+      width: 300px;
+      display: block;
+    }
+    .sub-menu{
+      position: relative;
+      margin-left: 0;
+      display: block;
+      .sub-sub-menu{
+        text-align: center;
+      }
+    }
+  }
+}
+nav{
+  a{
+    line-height: 100px;
+  }
+  .sub-menu-trigger:hover{
+    .sub-menu{
+      @apply lg:flex;
+    }
+  }
+  .sub-menu{
+    @apply absolute bg-lightprimary hidden z-50 ml-[-190px];
+    white-space: nowrap;
+    list-style: none;
+    &:hover{
+      @apply lg:flex;
+    }
+    a, li{
+      line-height: 3;
+    }
+    li ul li{
+      &:hover{
+        @apply bg-primary;
+        a{
+          @apply text-white;
+        }
+      }
+    }
+    li.column-start{
+      @apply text-center font-bold;
+      &:hover{
+      @apply bg-lightprimary;
+      }
+      ul{
+        @apply text-left font-normal;
+      }
+    }
+  }
+}
 }
 
 .wp-element-button,

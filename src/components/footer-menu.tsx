@@ -24,13 +24,14 @@ export default function NavigationMenu({ menuItems, textColor, column = false, h
       return () => {
         window.removeEventListener('click', handleClickOutside);
       };
-    },[isOpen]);
+    });
     // If hidden then string should be 'hidden' else empty string	
     hidden = hidden ? 'hidden' : '';
     // Based on https://www.wpgraphql.com/docs/menus/#hierarchical-data
     const hierarchicalMenuItems = flatListToHierarchical(menuItems?.edges);
 
     function renderMenu(items) {
+        console.log('items: ', items)
         return (
             <div className={`${hidden} ${isOpen ? 'open' : ''} bg-lightprimary z-50 mt-4 pb-4 md:p-4 lg:mt-0 lg:p-0 lg:bg-transparent lg:block menu-container`} ref={menuRef}>
                 <ul className={`menu lg:flex lg:-mx-4`}>
@@ -81,6 +82,7 @@ export default function NavigationMenu({ menuItems, textColor, column = false, h
                                     </ul>
                                 )}
                             </li>
+                            
                         );
                     })}
                 </ul>

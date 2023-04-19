@@ -34,7 +34,7 @@ export default function Index({ data, preview, menuItems, footerMenuItems, allPo
           <section className='wp-block-cover alignfull hero-section'>
             <span className='wp-block-cover__background'></span>
             <Image src={data.homePage.heroImage.sourceUrl} alt={data.homePage.heroImage.altText} width={1920} height={1080} priority placeholder='blur' blurDataURL={`/_next/image?url=${data.homePage.heroImage.sourceUrl}&w=16&q=1`}></Image>
-            <div className='max-w-content z-50'>
+            <div className='max-w-content z-40'>
               <div className='md:flex gap-8 items-center py-8'>
                 <div className='wp-block-column is-layout-flow'>
                   <h1 className='text-white mb-8'>{data.homePage.heroHeadline}</h1>
