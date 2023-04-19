@@ -14,7 +14,7 @@ export default function NavigationMenu({ menuItems, textColor, column = false, h
 
     function renderMenu(items) {
         return (
-            <div className={`${hidden} bg-lightprimary z-50 mt-4 pb-4 md:p-4 lg:mt-0 lg:p-0 lg:bg-transparent lg:block menu-container`} ref={menuRef}>
+            <div className={`${hidden} bg-lightprimary z-50 mt-4 pb-4 md:p-4 lg:mt-0 lg:p-0 lg:bg-transparent lg:block menu-container`}>
                 <ul className={`menu lg:flex lg:-mx-4`}>
                     {items.map((item, index) => {
                         return (
