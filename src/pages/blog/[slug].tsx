@@ -39,7 +39,18 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                 </Head>
                 <div className="alignfull flex flex-col md:flex-row">
                   <div className="md:basis-1/2 w-full h-72 md:h-[420px] relative cover">
-                    <Image className="rounded-none object-cover" src={post.featuredImage?.node.sourceUrl} alt={post.featuredImage?.node.altText} fill priority sizes={"100vw"} />
+                    <Image 
+                    className="rounded-none object-cover" 
+                    src={post.featuredImage?.node.sourceUrl} 
+                    alt={post.featuredImage?.node.altText} 
+                    placeholder="blur" 
+                    blurDataURL={`/_next/image/?url=${post.featuredImage?.node.sourceUrl}&w=16&q=1`} 
+                    fill
+                    priority 
+                    sizes="
+                      (max-width: 768px) 100vw,
+                      50vw"
+                    />
                   </div>
                   <div className="md:basis-1/2 bg-light flex items-center w-full">
                     <div className="max-w-xl px-4 py-12 mx-auto">
@@ -60,7 +71,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                       <div className='ad-container flex place-content-center items-center mt-6 flex-col'>
                         <h3 className='text-center mb-4'>Sign up for a FREE Copy.ai account!</h3>
                         <a href="https://www.copy.ai/?via=ai-edge-marketing" target='_blank'>
-                          <img src="/images/copy-ai-ad-2.gif" alt="Copy.ai Ad" width={300} height={300} />
+                          <img src="/images/copy-ai-ad.png" alt="Copy.ai Ad" width={300} height={300} />
                         </a>
                       </div>
                       <div className="toc-container mt-6 w-fit mx-auto">
