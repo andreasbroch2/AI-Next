@@ -46,7 +46,7 @@ export default function Header({ menuItems }) {
                             // Insert classes from fetch
                             <li key={index} className={`${item.node.cssClasses} text-secondary mb-2 md:mb-0 text-lg lg:px-12`}>
                               {item.node.url == '#' && ( 
-                                <><p className='text-black'>{item.node.label}</p><hr></hr></>
+                                <><p className='text-black lg:text-secondary leading-[100px] mb-0'>{item.node.label}</p><hr></hr></>
                               )}
                               {item.node.url != '#' && ( 
                                 <Link href={`${item.node.url}`}>{item.node.label ?? ''}</Link>
