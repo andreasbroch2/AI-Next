@@ -39,7 +39,7 @@ export async function getStaticProps() {
     const menuItems = await getNavMenu('PRIMARY');
     const footerMenuItems = await getNavMenu('FOOTER');
     const allPosts = await getAllPostsForHome(false);
-	return {
+	return { 
 		props: {
       data: data,
       menuItems: menuItems,
