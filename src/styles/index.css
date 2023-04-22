@@ -127,17 +127,6 @@ section.hero-section {
   @apply m-auto;
 }
 
-
-.wp-block-button a,
-.wp-block-file a.wp-block-file__button {
-  @apply bg-primary text-white no-underline py-2 px-4;
-}
-
-.wp-block-button a:hover,
-.wp-block-file a.wp-block-file__button:hover {
-  @apply bg-blue-400 cursor-pointer;
-}
-
 .wp-block-file a:first-of-type {
   @apply mr-4;
 }
@@ -196,14 +185,7 @@ body.single-post {
       }
     }
 
-    ol {
-      @apply list-decimal list-inside ml-4;
 
-      li {
-        @apply mb-4;
-        font-size: clamp(1rem, 2vw, 1.1rem);
-      }
-    }
 
     p {
       @apply mb-3;
@@ -405,10 +387,24 @@ footer {
 #article-text{
   @apply my-8;
   h2, h3, h4{
-    @apply mb-4;
+    @apply mb-6;
   } 
-  img{
+  figure{
     @apply my-4;
+    figcaption{
+      @apply text-center text-sm italic;
+    }
+  }
+  .wp-block-buttons{
+    @apply my-8;
+  }
+  ol {
+    @apply list-decimal list-inside ml-4;
+
+    li {
+      @apply mb-4;
+      font-size: clamp(1rem, 2vw, 1.1rem);
+    }
   }
 }
 ul.price-items-list {
@@ -585,9 +581,6 @@ nav{
   background: rgba(227, 235, 241, 1);
 }
 
-.wp-block-image {
-  margin: 0 !important;
-}
 
 
 .no-margin {
