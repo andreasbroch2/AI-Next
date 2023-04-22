@@ -512,7 +512,7 @@ nav{
     }
   }
   .sub-menu{
-    @apply absolute bg-lightprimary hidden z-50 ml-[-190px];
+    @apply absolute bg-lightprimary hidden z-50 ml-[-190px] transition-all;
     white-space: nowrap;
     list-style: none;
     &:hover{
