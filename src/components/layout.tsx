@@ -15,7 +15,7 @@ export default function Layout({ preview, children, footerMenuItems, data }) {
       <AppProvider>
         <ApolloProvider client={client}>
           <Meta />
-          <Seo seo={seo} uri={uri} />
+          <Seo data={data} seo={seo} uri={uri} />
           <div className="min-h-screen">
             <Alert preview={preview} />
             <main>{children}</main>

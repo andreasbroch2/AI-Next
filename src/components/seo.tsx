@@ -3,7 +3,8 @@ import Head from 'next/head';
 import Script from 'next/script';
 import PropTypes from 'prop-types';
 
-export default function Seo({ seo, uri }) {
+export default function Seo({ seo, uri, data }) {
+	console.log(data)
 	const {
 		title,
 		metaDesc,
