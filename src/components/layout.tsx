@@ -7,7 +7,7 @@ import { ApolloProvider } from "@apollo/client";
 import client from "./ApolloClient";
 
 
-export default function Layout({ preview, children, footerMenuItems, data, type }) {
+export default function Layout({ preview, children, footerMenuItems, data, type = "website" }) {
   const seo = data?.seo
   const uri = data?.uri
   return (
