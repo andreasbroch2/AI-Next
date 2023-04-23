@@ -22,7 +22,7 @@ export default function Page({ data, preview = false, menuItems, footerMenuItems
 			<Container>
 				<Header menuItems={menuItems} />
 				<section>
-					<div className='entry-content'>{imgConverter(data.content)}</div>
+					<div className='entry-content'>{data.content}</div>
 				</section>
 			</Container>
 		</Layout>
