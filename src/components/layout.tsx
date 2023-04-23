@@ -7,7 +7,7 @@ import { ApolloProvider } from "@apollo/client";
 import client from "./ApolloClient";
 
 
-export default function Layout({ preview, children, footerMenuItems, data }) {
+export default function Layout({ preview, children, footerMenuItems, data, type }) {
   const seo = data?.seo
   const uri = data?.uri
   return (
@@ -15,7 +15,7 @@ export default function Layout({ preview, children, footerMenuItems, data }) {
       <AppProvider>
         <ApolloProvider client={client}>
           <Meta />
-          <Seo data={data} seo={seo} uri={uri} />
+          <Seo data={data} seo={seo} uri={uri} type={type}/>
           <div className="min-h-screen">
             <Alert preview={preview} />
             <main>{children}</main>

@@ -5,6 +5,7 @@ export default function Meta() {
   return (
     <>
       <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="shortcut icon" href="/favicon/favicon.png" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta name="msapplication-config" content="/favicon/favicon.png" />

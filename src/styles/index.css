@@ -509,7 +509,7 @@ form.form, .form {
     }
     li{
       @apply mb-4;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       ul{
         @apply ml-6;
       }
@@ -517,7 +517,8 @@ form.form, .form {
   }
  p {
   margin-bottom: 0.75rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 300;
 }
 }
 footer {
@@ -554,11 +555,11 @@ footer {
     @apply my-8;
   }
   ol {
-    @apply list-decimal list-inside ml-4;
+    @apply list-decimal list-inside ml-4 my-6;
 
     li {
       @apply mb-4;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
   }
 }

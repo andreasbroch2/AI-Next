@@ -21,7 +21,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
 
   return (
     <>
-      <Layout preview={preview} footerMenuItems={footerMenuItems} data={post}>
+      <Layout preview={preview} footerMenuItems={footerMenuItems} data={post} type="article">
         <Container>
           <Header menuItems={menuItems} />
           {router.isFallback ? (
