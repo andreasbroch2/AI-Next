@@ -92,7 +92,6 @@ const CheckoutForm = () => {
      * @return {void}
      */
     const handleFormSubmit = async (event) => {
-        console.log('handleFormSubmit');
         event.preventDefault();
         /**
          * Validate Billing and Shipping Details
@@ -111,14 +110,12 @@ const CheckoutForm = () => {
                 billing: { ...input.billing, errors: billingValidationResult.errors },
                 shipping: { ...input.shipping, errors: shippingValidationResult.errors }
             });
-            console.log('invalid data')
             return;
         }
         if ('stripe-mode' === input.paymentMethod) {
             const createdOrderData = await handleStripeCheckout(input, cartState?.products, setRequestError, clearCartMutation, setIsStripeOrderProcessing, setCreatedOrderData);
             return null;
         }
-        console.log('input: ', input)
         const checkOutData = createCheckoutData(input);
         console.log('checkOutData: ', checkOutData)
         setRequestError(null);

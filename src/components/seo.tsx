@@ -16,10 +16,11 @@ export default function Seo({ seo, uri }) {
 		opengraphSiteName
 	} = seo;
 	const opengraphUrl = process.env.NEXT_PUBLIC_NEXTJS_SITE_URL + uri; 
+	const schema = seo.schema?.raw.replace(/\.ditsmartehjem.dk/g, '.com');
 	return (
 		<>
 		<Head>
-			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: seo.schema?.raw }} />
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schema }} />
 		</Head>
 		<NextSeo
 				title={title}

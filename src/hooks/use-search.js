@@ -24,7 +24,6 @@ export function useSearchState() {
   let client;
 
   if (data) {
-    console.log('data', data.posts)
     client = new Fuse(data.posts, {
       keys: ['slug', 'title'],
       isCaseSensitive: false,
@@ -72,8 +71,6 @@ export default function useSearch({ defaultQuery = null, maxResults } = {}) {
   // results to avoid passing back empty results
 
   if (client && query) {
-    console.log('query', query)
-    console.log('client', client)
     results = client.search(query).map(({ item }) => item);
   }
 

@@ -13,7 +13,6 @@ export default function Header({ menuItems }) {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target) && !targetRef.current.contains(event.target)) {
-        console.log('handleClickOutside', event.target)
           handleMenuToggle()
       }
     };
@@ -27,7 +26,6 @@ export default function Header({ menuItems }) {
     };
   },[isOpen]);
   const handleMenuToggle = () => {
-    console.log('handleMenuToggle')
     setIsOpen(!isOpen);
   };
   return (

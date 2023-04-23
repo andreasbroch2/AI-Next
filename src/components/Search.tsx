@@ -20,7 +20,6 @@ export default function Search({classes}) {
     useEffect(() => {
         // If we don't have a query, don't need to bother adding an event listener
         // but run the cleanup in case the previous state instance exists
-        console.log('useEffect')
         if (searchVisibility === SEARCH_HIDDEN) {
             removeDocumentOnClick();
             return;
@@ -64,7 +63,6 @@ export default function Search({classes}) {
     }
 
     const handleOnToggleSearch2 = () => {
-        console.log('handleOnToggleSearch');
         setSearchVisibility(SEARCH_VISIBLE);
     }
 

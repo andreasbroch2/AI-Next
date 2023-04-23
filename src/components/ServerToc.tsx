@@ -24,8 +24,6 @@ export default function ServerToc({ html }) {
       currentHeading.items.push(heading);
     }
   });
-
-  console.log('headings: ', headings)
   return (
 
     <nav aria-label="Table of contents" className="text ib-toc-container toc-table py-4">
