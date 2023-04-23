@@ -19,6 +19,14 @@ const poppins = localFont({
   ],
   variable: '--font-poppins'
 })
+const outfit = localFont({
+  src: [
+    {
+      path: './Outfit-VariableFont_wght.ttf'
+    }
+  ],
+  variable: '--font-outfit'
+})
 
 
 
@@ -28,7 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 }, []);
   return (
     <SearchProvider>
-    <div className={poppins.className}>
+    <div className={`${poppins.className} ${outfit.className}`}>
       <Script src="/js/app.js" />
       <Script src="/js/fontAwesome.js" />
       <Component {...pageProps} />

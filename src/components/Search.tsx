@@ -31,9 +31,9 @@ export default function Search({classes}) {
         // When the search box opens up, additionall find the search input and focus
         // on the element so someone can start typing right away
 
-        // const searchInput: any = Array.from(formRef.current.elements).find((input: any) => input.type === 'search');
+        const searchInput: any = Array.from(formRef.current.elements).find((input: any) => input.type === 'search');
 
-        // searchInput.focus();
+        searchInput.focus();
 
         return () => {
             removeResultsRoving();

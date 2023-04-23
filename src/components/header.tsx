@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
 import flatListToHierarchical from '../lib/flatListToHierarchical'
 import Search from './Search'
+import { FaCaretDown } from 'react-icons/fa'
 
 export default function Header({ menuItems }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,53 +47,54 @@ export default function Header({ menuItems }) {
                     {hierarchicalMenuItems.map((item, index) => {
                         return (
                             // Insert classes from fetch
-                            <li key={index} className={`${item.node.cssClasses} text-secondary mb-2 md:mb-0 text-lg lg:px-12`}>
+                            <li key={index} className={`${item.node.cssClasses} lg:flex items-center text-secondary lg:mb-0 text-xl lg:px-12`}>
                               {item.node.url == '#' && ( 
-                                <><p className='text-black lg:text-secondary leading-[100px] mb-0'>{item.node.label}</p><hr></hr></>
+                                <><p className='text-black lg:text-secondary lg:leading-[100px] mb-0'>{item.node.label}</p></>
                               )}
                               {item.node.url != '#' && ( 
                                 <Link href={`${item.node.url}`}>{item.node.label ?? ''}</Link>
                               )}
                                 {item.node.childItems && item.node.childItems.edges.length > 0 && (
-                                    <ul className="sub-menu">
-                                        {item.node.childItems.edges.map((childItem, index) => {
-                                            if (childItem.node.cssClasses.includes('column-start')) {
-                                                return (
-                                                    <li key={index} className={`${childItem.node.cssClasses} text-black mb-2 md:mb-0 text-lg lg:px-6`}>
-                                                        <p>{childItem.node.label}</p>
-                                                        <hr></hr>
-                                                        {childItem.node.childItems && childItem.node.childItems.edges.length > 0 && (
-                                                            <ul className="sub-sub-menu">
-                                                                {childItem.node.childItems.edges.map((subChildItem, index) => {
-                                                                    return (
-                                                                        <li key={index} className={`${subChildItem.node.cssClasses} text-secondary mb-2 md:mb-0 text-lg lg:px-6`}>
-                                                                            <Link href={`${subChildItem.node.url}`}>{subChildItem.node.label ?? ''}</Link>
-                                                                        </li>
-                                                                    );
-                                                                })}
-                                                            </ul>
-                                                        )}
-                                                    </li>
-                                                )
-                                            }
-                                            return (
-                                                <li key={index} className={`${childItem.node.cssClasses} text-secondary mb-2 md:mb-0 text-lg lg:px-6`}>
-                                                    <Link href={`${childItem.node.url}`}>{childItem.node.label ?? ''}</Link>
-                                                    {childItem.node.childItems && childItem.node.childItems.edges.length > 0 && (
-                                                        <ul className="sub-sub-menu">
-                                                            {childItem.node.childItems.edges.map((subChildItem, index) => {
-                                                                return (
-                                                                    <li key={index} className={`${subChildItem.node.cssClasses} text-secondary mb-2 md:mb-0 text-lg lg:px-6`}>
-                                                                        <Link href={`${subChildItem.node.url}`}>{subChildItem.node.label ?? ''}</Link>
-                                                                    </li>
-                                                                );
-                                                            })}
-                                                        </ul>
-                                                    )}
+                                  <><span className='hidden lg:block'><FaCaretDown /></span>
+                                  <ul className="sub-menu">
+                                {item.node.childItems.edges.map((childItem, index) => {
+                                  if (childItem.node.cssClasses.includes('column-start')) {
+                                    return (
+                                      <li key={index} className={`${childItem.node.cssClasses} text-black mb-2 lg:mb-0 text-lg lg:px-6`}>
+                                        <p>{childItem.node.label}</p>
+                                        <hr></hr>
+                                        {childItem.node.childItems && childItem.node.childItems.edges.length > 0 && (
+                                          <ul className="sub-sub-menu">
+                                            {childItem.node.childItems.edges.map((subChildItem, index) => {
+                                              return (
+                                                <li key={index} className={`${subChildItem.node.cssClasses} text-secondary mb-2 lg:mb-0 text-lg lg:px-6`}>
+                                                  <Link href={`${subChildItem.node.url}`}>{subChildItem.node.label ?? ''}</Link>
                                                 </li>
-                                            );
-                                        })}
-                                    </ul>
+                                              )
+                                            })}
+                                          </ul>
+                                        )}
+                                      </li>
+                                    )
+                                  }
+                                  return (
+                                    <li key={index} className={`${childItem.node.cssClasses} text-secondary mb-2 md:mb-0 text-lg lg:px-6`}>
+                                      <Link href={`${childItem.node.url}`}>{childItem.node.label ?? ''}</Link>
+                                      {childItem.node.childItems && childItem.node.childItems.edges.length > 0 && (
+                                        <ul className="sub-sub-menu">
+                                          {childItem.node.childItems.edges.map((subChildItem, index) => {
+                                            return (
+                                              <li key={index} className={`${subChildItem.node.cssClasses} text-secondary mb-2 md:mb-0 text-lg lg:px-6`}>
+                                                <Link href={`${subChildItem.node.url}`}>{subChildItem.node.label ?? ''}</Link>
+                                              </li>
+                                            )
+                                          })}
+                                        </ul>
+                                      )}
+                                    </li>
+                                  )
+                                })}
+                              </ul></>
                                 )}
                             </li>
                         );
