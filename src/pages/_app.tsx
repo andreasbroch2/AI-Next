@@ -8,6 +8,7 @@ import localFont from 'next/font/local'
 import Head from 'next/head'
 import { useEffect } from 'react';
 import TagManager from 'react-gtm-module';
+import { SearchProvider } from '../hooks/use-search';
 
 const poppins = localFont({
   src: [
@@ -26,15 +27,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     TagManager.initialize({ gtmId: 'GTM-P8GKKRH' });
 }, []);
   return (
-    <>
-    <Head>
-    </Head>
+    <SearchProvider>
     <div className={poppins.className}>
       <Script src="/js/app.js" />
       <Script src="/js/fontAwesome.js" />
       <Component {...pageProps} />
       </div>
-    </>
+    </SearchProvider>
   )
 }
 

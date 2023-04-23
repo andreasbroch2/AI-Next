@@ -2,15 +2,17 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
 import flatListToHierarchical from '../lib/flatListToHierarchical'
-
+import Search from './Search'
 
 export default function Header({ menuItems }) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
+  const targetRef = useRef(null);
   const hierarchicalMenuItems = flatListToHierarchical(menuItems?.edges);
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+      if (menuRef.current && !menuRef.current.contains(event.target) && !targetRef.current.contains(event.target)) {
+        console.log('handleClickOutside', event.target)
           handleMenuToggle()
       }
     };
@@ -24,23 +26,23 @@ export default function Header({ menuItems }) {
     };
   },[isOpen]);
   const handleMenuToggle = () => {
+    console.log('handleMenuToggle')
     setIsOpen(!isOpen);
   };
   return (
     <>
-      <header className="mx-auto z-50 py-4 lg:flex lg:justify-around lg:items-center px-4 md:px-12" ref={menuRef}>
+      <header className="mx-auto z-50 py-4 lg:flex lg:justify-around lg:items-center px-4 md:px-12">
         <div className='flex justify-between items-center'>
           <Link href="/" className="hover:underline">
             <Image src="/favicon/AI Edge - Logo.png" alt="DK Smarthome - Logo" width={160} height={64} priority></Image>
           </Link>
-          <div className="lg:hidden">
+          <div className="lg:hidden" ref={targetRef}>
               <i className="fa-solid fa-bars text-2xl z-[60]" onClick={handleMenuToggle}></i>
           </div>
         </div>
-        <nav
-            role="navigation">
+        <nav role="navigation" ref={menuRef}>
             <div className={`${isOpen ? 'open' : ''} menu-container`} >
-                <ul className={`menu lg:flex lg:-mx-4`}>
+                <ul className={`menu mt-6 lg:mt-0 lg:flex lg:mx-4`}>
                     {hierarchicalMenuItems.map((item, index) => {
                         return (
                             // Insert classes from fetch
@@ -98,6 +100,7 @@ export default function Header({ menuItems }) {
                 </ul>
             </div>
         </nav>
+        <Search classes={"mobile"}/>
       </header>
     </>
   )

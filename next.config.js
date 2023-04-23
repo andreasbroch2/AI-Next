@@ -48,6 +48,7 @@ module.exports = {
     config.resolve = {
       ...config.resolve,
     }
+
     return config
   },
 }
