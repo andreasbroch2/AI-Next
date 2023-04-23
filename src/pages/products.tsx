@@ -18,12 +18,11 @@ export default function Index({ data, preview, menuItems, footerMenuItems }) {
     return <div>Indlæser...</div>;
   }
   return (
-    <Layout preview={preview} footerMenuItems={footerMenuItems} data={data}>
+    <Layout data={data}>
     <Head>
       <title>Products</title>
     </Head>
     <Container>
-      <Header menuItems={menuItems}/>
           <Products products={data?.edges ?? []}/>
     </Container>
   </Layout>

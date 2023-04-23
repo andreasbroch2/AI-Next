@@ -11,6 +11,7 @@ import { getAllPostsWithSlug, getPostAndMorePosts, getNavMenu } from '../../lib/
 import Image from 'next/image'
 import Toc from '../../components/toc'
 import ServerToc from '../../components/ServerToc'
+import { BreadcrumbJsonLd } from 'next-seo'
 
 
 export default function Post({ post, preview, menuItems, footerMenuItems, cleanElement }) {
@@ -21,9 +22,21 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
 
   return (
     <>
-      <Layout preview={preview} footerMenuItems={footerMenuItems} data={post} type="article">
+    <BreadcrumbJsonLd
+      itemListElements={[
+        {
+          position: 1,
+          name: 'Blog',
+          item: 'https://aiedgemarketing.com/blog/',
+        },
+        {
+          position: 2,
+          name: post?.title,
+        },
+      ]}
+    />
+      <Layout data={post} type="article">
         <Container>
-          <Header menuItems={menuItems} />
           {router.isFallback ? (
             <PostTitle>Loading…</PostTitle>
           ) : (

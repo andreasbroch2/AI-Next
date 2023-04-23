@@ -24,8 +24,9 @@ export function useSearchState() {
   let client;
 
   if (data) {
+    console.log('data', data)
     client = new Fuse(data.posts, {
-      keys: ['slug', 'title'],
+      keys: ['node.slug', 'node.title'],
       isCaseSensitive: false,
     });
   }

@@ -22,13 +22,12 @@ export default function Index({ data, preview, menuItems, footerMenuItems, allPo
     return <div>Indlæser...</div>;
   }
   return (
-    <Layout preview={preview} footerMenuItems={footerMenuItems} data={homePage}>
+    <Layout data={homePage}>
       <Script src="https://kit.fontawesome.com/bf7aea6dc3.js" />
       <Head>
         <title>{data.seo.title}</title>
       </Head>
       <Container>
-        <Header menuItems={menuItems} />
         <div className='entry-content homepage'>
           {/* Hero section with image with text and a cta with a newsletter signup form */}
           <section className='wp-block-cover alignfull hero-section'>

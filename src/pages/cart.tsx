@@ -17,12 +17,11 @@ export default function Cart({ data, preview = false, menuItems, footerMenuItems
 	}
 
 	return (
-    <Layout preview={preview} footerMenuItems={footerMenuItems} data={data}>
+    <Layout data={data}>
         <Head>
           <title>Cart</title>
         </Head>
         <Container>
-          <Header menuItems={menuItems}/>
 			<CartItemsContainer/>
         </Container>
       </Layout>

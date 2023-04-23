@@ -16,10 +16,9 @@ export default function Post({ product, preview, footerMenuItems, menuItems }) {
   }
 
   return (
-    <Layout preview={preview} footerMenuItems={footerMenuItems} data={product}>
+    <Layout data={product}>
       { product ? (
       <Container>
-          <Header menuItems={menuItems}/>
 				<div className="single-product container mx-auto my-8 px-4 xl:px-0">
 					<div className="grid md:grid-cols-2 gap-4">
 						<div className="product-images">

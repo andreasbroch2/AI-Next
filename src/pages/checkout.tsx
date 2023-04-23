@@ -7,12 +7,11 @@ import { getNavMenu } from "../lib/api";
 import Head from "next/head";
 
 const Checkout = ({preview, menuItems, footerMenuItems, data}) => (
-	<Layout preview={preview} footerMenuItems={footerMenuItems} data={data}>
+	<Layout data={data}>
 		<Head>
           <title>Checkout</title>
         </Head>
 		<Container>
-			<Header menuItems={menuItems} />
 		<div className="checkout container mx-auto my-8 px-4 xl:px-0">
 			<h1 className="mb-5 text-2xl uppercase">Checkout Page</h1>
 			<CheckoutForm />

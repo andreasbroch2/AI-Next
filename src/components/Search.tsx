@@ -138,11 +138,11 @@ export default function Search({classes}) {
                     <div className='navSearchResults'>
                         {results.length > 0 && (
                             <ul>
-                                {results.map(({ slug, title }, index) => {
+                                {results.map((post, index) => {
                                     return (
-                                        <li key={slug}>
-                                            <Link tabIndex={index} href={`/blog/${slug}`}>
-                                                {title}
+                                        <li key={post.node.slug}>
+                                            <Link tabIndex={index} href={`/blog/${post.node.slug}`}>
+                                                {post.node.title}
                                             </Link>
                                         </li>
                                     );

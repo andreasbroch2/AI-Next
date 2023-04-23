@@ -17,12 +17,11 @@ const Page = ( {allPosts, data, preview = false, menuItems, footerMenuItems} ) =
 	}
 
 	return (
-        <Layout preview={preview} footerMenuItems={footerMenuItems} data={data}>
+        <Layout data={data}>
         <Head>
           <title>{data?.seo.title}</title>
         </Head>
         <Container>
-          <Header menuItems={menuItems}/>
             <section>
               <h1 className='text-center'>Articles</h1>
               <Posts posts={allPosts?.edges ?? []}/>

@@ -17,12 +17,11 @@ export default function Seo({ seo, uri, data, type = "website" }) {
 		opengraphPublishedTime
 	} = seo;
 	const opengraphUrl = process.env.NEXT_PUBLIC_NEXTJS_SITE_URL + uri;
-	const schema = seo.schema?.raw.replace(/\.ditsmartehjem.dk/g, '.com');
 	if (type == "website") {
 		return (
 			<>
 				<Head>
-					<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schema }} />
+					<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: seo.schema?.raw }} />
 				</Head>
 				<NextSeo
 					title={title}
@@ -53,7 +52,7 @@ export default function Seo({ seo, uri, data, type = "website" }) {
 		return (
 			<>
 				<Head>
-					<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schema }} />
+					<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: seo.schema?.raw }} />
 				</Head>
 				<NextSeo
 					title={title}

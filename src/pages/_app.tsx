@@ -9,6 +9,10 @@ import Head from 'next/head'
 import { useEffect } from 'react';
 import TagManager from 'react-gtm-module';
 import { SearchProvider } from '../hooks/use-search';
+import { SiteContext, useSiteContext } from '../hooks/use-site';
+import { getNavMenu } from '../lib/api'
+import NextApp from 'next/app';
+
 
 const poppins = localFont({
   src: [
@@ -30,19 +34,38 @@ const outfit = localFont({
 
 
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps, menuItems, footerMenuItems }: AppProps & { menuItems: any, footerMenuItems: any }) {
+  const site = useSiteContext({
+    menuItems,
+    footerMenuItems,
+  });
   useEffect(() => {
     TagManager.initialize({ gtmId: 'GTM-P8GKKRH' });
-}, []);
+  }, []);
   return (
-    <SearchProvider>
-    <div className={`${poppins.className} ${outfit.className}`}>
-      <Script src="/js/app.js" />
-      <Script src="/js/fontAwesome.js" />
-      <Component {...pageProps} />
-      </div>
-    </SearchProvider>
+    <SiteContext.Provider value={site}>
+      <SearchProvider>
+        <div className={`${poppins.className} ${outfit.className}`}>
+          <Script src="/js/app.js" />
+          <Script src="/js/fontAwesome.js" />
+          <Component {...pageProps} />
+        </div>
+      </SearchProvider>
+    </SiteContext.Provider>
   )
 }
+
+MyApp.getInitialProps = async function (appContext) {
+  const appProps = await NextApp.getInitialProps(appContext);
+
+  const menuItems = await getNavMenu('PRIMARY');
+  const footerMenuItems = await getNavMenu('FOOTER');
+  return {
+    ...appProps,
+    menuItems,
+    footerMenuItems,
+  };
+};
+
 
 export default MyApp

@@ -5,11 +5,16 @@ import Seo from './seo'
 import { AppProvider } from "./context/AppContext";
 import { ApolloProvider } from "@apollo/client";
 import client from "./ApolloClient";
+import Header from "./header";
+import useSite from "../hooks/use-site";
 
 
-export default function Layout({ preview, children, footerMenuItems, data, type = "website" }) {
+export default function Layout({ children, data = null, type = "website" }) {
+  const { menuItems, footerMenuItems } = useSite();
+
   const seo = data?.seo
   const uri = data?.uri
+
   return (
     <>
       <AppProvider>
@@ -17,7 +22,8 @@ export default function Layout({ preview, children, footerMenuItems, data, type 
           <Meta />
           <Seo data={data} seo={seo} uri={uri} type={type}/>
           <div className="min-h-screen">
-            <Alert preview={preview} />
+            <Alert />
+            <Header menuItems={menuItems}/>
             <main>{children}</main>
           </div>
           <Footer menuItems={footerMenuItems} />

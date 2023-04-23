@@ -9,12 +9,11 @@ import { getNavMenu } from '../lib/api';
 
 function Error404( {data, preview, footerMenuItems, menuItems} ) {
 	return (
-		<Layout preview={preview} footerMenuItems={footerMenuItems} data={data}>
+		<Layout data={data}>
         <Head>
             <title>404 Page</title>
         </Head>
 		<Container>
-			<Header menuItems={menuItems} />
 			<section>
 			<div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
 						<div

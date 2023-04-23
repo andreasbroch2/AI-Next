@@ -15,7 +15,7 @@ export default function Page({ data, preview = false, menuItems, footerMenuItems
 	}
 
 	return (
-		<Layout preview={preview} footerMenuItems={footerMenuItems} data={data}>
+		<Layout data={data}>
 			<Head>
 				<title>{data?.seo.title}</title>
 			</Head>
