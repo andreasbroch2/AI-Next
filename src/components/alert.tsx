@@ -8,7 +8,7 @@ export default function Alert({ }) {
       })}
     >
       <Container>
-        <div className="py-2 text-center text-sm">
+        <div className="py-2 text-center text-sm bg-lightprimary">
             <>
                 Welcome to AI Edge Marketing - Achieve your marketing goals with AI-powered solutions.            </>
         </div>

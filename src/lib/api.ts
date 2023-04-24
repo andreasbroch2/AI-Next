@@ -401,6 +401,10 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
         node {
           sourceUrl
           altText
+          mediaDetails {
+            height
+            width
+          }
         }
       }
       author {
@@ -427,6 +431,7 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
       post(id: $id, idType: $idType) {
         ...PostFields
         content
+        modified
         uri
         seo {
           breadcrumbs {

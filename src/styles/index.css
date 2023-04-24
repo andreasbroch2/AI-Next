@@ -90,7 +90,7 @@ footer ul{
     border: none;
     outline: none;
     cursor: pointer;
-
+    float: right;
     &[disabled] {
       svg {
         fill: $color-gray-200;
@@ -539,7 +539,7 @@ footer {
   h2, h3, h4{
     @apply my-6;
   } 
-  h2{
+  h2, h4{
     @apply text-primary;
   }
   h3{
@@ -626,13 +626,13 @@ img {
 }
 
 header {
-  @apply bg-lightprimary;
+  @apply bg-light;
   height: 100px;
   img {
   @apply rounded-none;
 }
 .menu-container{
-  @apply bg-lightprimary z-50 mt-4 pb-4 md:p-4 md:mt-0 md:p-0 md:block;
+  @apply bg-light z-50 mt-4 pb-4 md:p-4 md:mt-0 md:p-0 md:block;
   @media screen and (max-width: 1024px) {
     position: fixed;
     overflow-y: auto;
@@ -721,7 +721,7 @@ nav{
 
 .wp-element-button,
 .btn {
-  @apply text-white text-base bg-primary px-4 py-2 rounded-full transition-all border-2 border-primary;
+  @apply text-white text-xl bg-primary px-4 py-2 rounded-full transition-all border-2 border-primary;
 
   &:hover {
     @apply bg-white text-primary border-primary border-2;

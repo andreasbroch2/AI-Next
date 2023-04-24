@@ -22,7 +22,6 @@ export default function Layout({ children, data = null, type = "website" }) {
           <Meta />
           <Seo data={data} seo={seo} uri={uri} type={type}/>
           <div className="min-h-screen">
-            <Alert />
             <Header menuItems={menuItems}/>
             <main>{children}</main>
           </div>

@@ -30,7 +30,7 @@ export default function Header({ menuItems }) {
   };
   return (
     <>
-      <header className="mx-auto z-50 py-4 lg:flex lg:justify-around lg:items-center px-4 md:px-12">
+      <header className="mx-auto z-50 py-4 lg:flex lg:justify-between lg:items-center px-4 md:px-12">
         <div className='flex justify-between items-center'>
           <Link href="/" className="hover:underline">
             <Image src="/favicon/AI Edge - Logo.png" alt="DK Smarthome - Logo" width={160} height={64} priority></Image>

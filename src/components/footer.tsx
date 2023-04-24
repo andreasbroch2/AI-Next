@@ -3,7 +3,7 @@ import NavigationMenu from './nav-menu'
 
 export default function Footer({ menuItems }) {
   return (
-    <footer id="colophon" className="site-footer bg-lightprimary py-8 md:p-16 text-secondary" role="contentinfo">
+    <footer id="colophon" className="site-footer bg-light py-8 md:p-16 text-secondary" role="contentinfo">
     <div className="container mx-auto max-w-content">
       <div className="flex flex-col md:flex-row gap-4 mb-8 place-content-between">
         <div className="basis-1/4">
