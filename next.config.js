@@ -34,6 +34,15 @@ module.exports = {
       },
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: '/blog/best-ai-marketing-tools/',
+        destination: '/blog/11-best-ai-tools-for-marketing/',
+        permanent: true,
+      },
+    ]
+  },
   images: {
     domains: [
       process.env.WORDPRESS_API_URL.match(/(?!(w+)\.)\w*(?:\w+\.)+\w+/)[0], // Valid WP Image domain.
