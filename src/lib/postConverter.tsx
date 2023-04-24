@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 const parse = require('html-react-parser');
 
 export default function postConverter(element) {
@@ -8,6 +9,11 @@ export default function postConverter(element) {
     return React.Children.map(node, (node) => {
       if (!node.type) {
         return node;
+      }
+      // If node.type is a <a> tag, return a next.js Link with the same props
+      else if (node.type === 'a') {
+        console.log('<a>', node)
+        return React.createElement(Link, { href: node.props.href }, node.props.children)
       }
       if (node.type === 'img') {
         if (node.props.width && node.props.height) {
