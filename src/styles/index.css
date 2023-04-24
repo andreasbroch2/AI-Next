@@ -520,6 +520,9 @@ form.form, .form {
   font-size: 1.3rem;
   font-weight: 300;
 }
+p.schema-faq-answer{
+  @apply mt-4 mb-6;
+}
 }
 footer {
   @apply text-black px-8;
@@ -533,6 +536,13 @@ footer {
   h3 {
     @apply mb-4;
   }
+}
+.schema-faq-question{
+  @apply text-3xl pb-4;
+}
+
+b, strong{
+  font-weight: 600;
 }
 #article-text{
   @apply my-8;
@@ -683,7 +693,7 @@ nav{
   .sub-menu{
     @apply z-50 lg:flex;
     @media (min-width: 1025px) {
-    top: 137px;
+    top: 100px;
     position: absolute;
     transform: translate(-50%,30px);
     opacity: 0;
