@@ -729,7 +729,7 @@ nav{
 }
 }
 
-.wp-element-button,
+.wp-block-button,
 .btn {
   @apply text-white text-xl bg-primary px-4 py-2 rounded-full transition-all border-2 border-primary;
 

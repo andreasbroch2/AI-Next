@@ -79,13 +79,11 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                       <div className="relative">
                         <Image
                           className="object-cover"
-                          src={post.featuredImage?.node.sourceUrl}
+                          src={require(post.featuredImage?.node.sourceUrl.replace('https://aiedgemarketing.ditsmartehjem.dk/wp-content/uploads', '../../public').replace('jpg' , 'jpeg'))}
                           alt={post.featuredImage?.node.altText}
-                          placeholder="blur"
-                          blurDataURL={`/_next/image/?url=${post.featuredImage?.node.sourceUrl}&w=16&q=1`}
-                          height={post.featuredImage?.node.mediaDetails.height}
                           width={post.featuredImage?.node.mediaDetails.width}
-                          priority
+                          height={post.featuredImage?.node.mediaDetails.height}
+                          placeholder="blur"
                           sizes="
                       (max-width: 768px) 100vw,
                       50vw"
