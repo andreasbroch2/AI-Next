@@ -20,7 +20,6 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
   }
-
   return (
     <>
       <BreadcrumbJsonLd
