@@ -79,7 +79,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                       <div className="relative">
                         <Image
                           className="object-cover"
-                          src={require(post.featuredImage?.node.sourceUrl.replace('https://aiedgemarketing.ditsmartehjem.dk/wp-content/uploads', '../../public').replace('jpg' , 'jpeg'))}
+                          src={post.featuredImage?.node.sourceUrl}
                           alt={post.featuredImage?.node.altText}
                           width={post.featuredImage?.node.mediaDetails.width}
                           height={post.featuredImage?.node.mediaDetails.height}
