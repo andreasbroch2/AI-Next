@@ -18,7 +18,7 @@ import Link from 'next/link'
 export default function Post({ post, preview, menuItems, footerMenuItems, cleanElement }) {
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />
+    return <ErrorPage statusCode={404} /> 
   }
   return (
     <>
