@@ -17,7 +17,6 @@ export default function Search() {
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    console.log('results', results)
     return (
         <Layout>
             <Head>

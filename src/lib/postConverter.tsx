@@ -12,7 +12,6 @@ export default function postConverter(element) {
       }
       // If node.type is a <a> tag, return a next.js Link with the same props
       else if (node.type === 'a') {
-        console.log('<a>', node)
         return React.createElement(Link, { href: node.props.href }, reactNodeToImg(node.props.children))
       }
       if (node.type === 'img') {

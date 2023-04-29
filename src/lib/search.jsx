@@ -3,7 +3,6 @@ import { fetchAPI } from './api';
 export async function getSearchData() {
   const response = await getAllPosts();
   const postsData = response?.edges;
-  console.log('PostsData', postsData)
   const json = generateIndexSearch(postsData);
   return JSON.parse(json);
 }
