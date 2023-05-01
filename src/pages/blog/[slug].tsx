@@ -8,7 +8,7 @@ import PostTitle from '../../components/post-title'
 import { getAllPostsWithSlug, getPostAndMorePosts, getNavMenu } from '../../lib/api'
 import Image from 'next/image'
 import ServerToc from '../../components/ServerToc'
-import { BreadcrumbJsonLd } from 'next-seo'
+import { BreadcrumbJsonLd, VideoJsonLd } from 'next-seo'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 
@@ -18,7 +18,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
   const [imageClicked, setImageClicked] = useState(true);
 
   if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} /> 
+    return <ErrorPage statusCode={404} />
   }
   return (
     <>
@@ -34,6 +34,13 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
             name: post?.title,
           },
         ]}
+      />
+      <VideoJsonLd
+        name={post?.title}
+        description={post?.excerpt}
+        embedUrl={`https://www.youtube.com/embed/${post.postsACF.youtubeId}?rel=0&showinfo=0&autoplay=1`}
+        uploadDate={post?.modified}
+        thumbnailUrls={[`https://img.youtube.com/vi/${post.postsACF.youtubeId}/sddefault.jpg`]}
       />
       <Layout data={post} type="article">
         <Container>
@@ -78,41 +85,41 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                       {/** If post.postsACF.youtubeId is not empty print it. else print image  */}
                       {post.postsACF.youtubeId ? (
                         <div className='relative video-post'>
-                        {!imageClicked ? (
-                          <>
-                            <Image
-                              src={`https://img.youtube.com/vi/${post.postsACF.youtubeId}/sddefault.jpg`}
-                              fill
-                              alt="yt thumbnail"
-                              priority
+                          {!imageClicked ? (
+                            <>
+                              <Image
+                                src={`https://img.youtube.com/vi/${post.postsACF.youtubeId}/sddefault.jpg`}
+                                fill
+                                alt="yt thumbnail"
+                                priority
+                              />
+                              <img className='play' id="play-button" src="http://addplaybuttontoimage.way4info.net/Images/Icons/7.png" alt="play button" />
+                            </>
+                          ) : (
+                            <iframe
+                              allowFullScreen
+                              src={
+                                imageClicked
+                                  ? `https://www.youtube.com/embed/${post.postsACF.youtubeId}?rel=0&showinfo=0&autoplay=1`
+                                  : ""
+                              }
+                              title="youtube video"
                             />
-                            <img className='play' id="play-button" src="http://addplaybuttontoimage.way4info.net/Images/Icons/7.png" alt="play button" />
-                          </>
-                        ) : (
-                          <iframe
-                            allowFullScreen
-                            src={
-                              imageClicked
-                                ? `https://www.youtube.com/embed/${post.postsACF.youtubeId}?rel=0&showinfo=0&autoplay=1`
-                                : ""
-                            }
-                            title="youtube video"
-                          />
-                        )}
-                      </div>
+                          )}
+                        </div>
                       ) : (
-                      <div className="relative">
-                        <Image
-                          className="object-cover"
-                          src={post.featuredImage?.node.sourceUrl}
-                          alt={post.featuredImage?.node.altText}
-                          width={post.featuredImage?.node.mediaDetails.width}
-                          height={post.featuredImage?.node.mediaDetails.height}
-                          sizes="
+                        <div className="relative">
+                          <Image
+                            className="object-cover"
+                            src={post.featuredImage?.node.sourceUrl}
+                            alt={post.featuredImage?.node.altText}
+                            width={post.featuredImage?.node.mediaDetails.width}
+                            height={post.featuredImage?.node.mediaDetails.height}
+                            sizes="
                       (max-width: 768px) 100vw,
                       50vw"
-                        />
-                      </div>
+                          />
+                        </div>
                       )}
                       <div id="article-text">
                         {postConverter(cleanElement)}
