@@ -35,7 +35,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
           },
         ]}
       />
-      {post.postsACF.youtubeId ? (
+      {post?.postsACF.youtubeId ? (
       <VideoJsonLd
         name={post?.title}
         description={post?.excerpt}
