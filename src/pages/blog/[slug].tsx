@@ -35,6 +35,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
           },
         ]}
       />
+      {post.postsACF.youtubeId ? (
       <VideoJsonLd
         name={post?.title}
         description={post?.excerpt}
@@ -42,6 +43,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
         uploadDate={post?.modified}
         thumbnailUrls={[`https://img.youtube.com/vi/${post.postsACF.youtubeId}/sddefault.jpg`]}
       />
+      ):(null)}
       <Layout data={post} type="article">
         <Container>
           {router.isFallback ? (
