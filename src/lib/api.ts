@@ -433,6 +433,9 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
         content
         modified
         uri
+        postsACF{
+          youtubeId
+        }
         seo {
           breadcrumbs {
             text

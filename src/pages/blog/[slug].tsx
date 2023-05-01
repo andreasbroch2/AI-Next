@@ -1,22 +1,22 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import Head from 'next/head'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Container from '../../components/container'
 import postConverter from '../../lib/postConverter'
-import Header from '../../components/header'
 import Layout from '../../components/layout'
 import PostTitle from '../../components/post-title'
 import { getAllPostsWithSlug, getPostAndMorePosts, getNavMenu } from '../../lib/api'
 import Image from 'next/image'
-import Toc from '../../components/toc'
 import ServerToc from '../../components/ServerToc'
 import { BreadcrumbJsonLd } from 'next-seo'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 
 
 export default function Post({ post, preview, menuItems, footerMenuItems, cleanElement }) {
   const router = useRouter()
+  const [imageClicked, setImageClicked] = useState(true);
+
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} /> 
   }
@@ -75,6 +75,32 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                           <span>{new Date(post.modified).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                         </div>
                       </div>
+                      {/** If post.postsACF.youtubeId is not empty print it. else print image  */}
+                      {post.postsACF.youtubeId ? (
+                        <div className='relative video-post'>
+                        {!imageClicked ? (
+                          <>
+                            <Image
+                              src={`https://img.youtube.com/vi/${post.postsACF.youtubeId}/sddefault.jpg`}
+                              fill
+                              alt="yt thumbnail"
+                              priority
+                            />
+                            <img className='play' id="play-button" src="http://addplaybuttontoimage.way4info.net/Images/Icons/7.png" alt="play button" />
+                          </>
+                        ) : (
+                          <iframe
+                            allowFullScreen
+                            src={
+                              imageClicked
+                                ? `https://www.youtube.com/embed/${post.postsACF.youtubeId}?rel=0&showinfo=0&autoplay=1`
+                                : ""
+                            }
+                            title="youtube video"
+                          />
+                        )}
+                      </div>
+                      ) : (
                       <div className="relative">
                         <Image
                           className="object-cover"
@@ -87,6 +113,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                       50vw"
                         />
                       </div>
+                      )}
                       <div id="article-text">
                         {postConverter(cleanElement)}
                       </div>
