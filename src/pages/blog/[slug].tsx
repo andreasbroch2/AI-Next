@@ -15,8 +15,16 @@ import { useState, useEffect } from 'react'
 
 export default function Post({ post, preview, menuItems, footerMenuItems, cleanElement }) {
   const router = useRouter()
-  const [imageClicked, setImageClicked] = useState(true);
+  const [imageClicked, setImageClicked] = useState(false);
+  const onThumbnailClick = () => {
+    setImageClicked(true);
+  };
 
+  useEffect(()=>{
+    const playImg = document.querySelector("#play-button");
+
+    playImg.addEventListener("click",onThumbnailClick,{once:true});
+  },[])
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
   }
