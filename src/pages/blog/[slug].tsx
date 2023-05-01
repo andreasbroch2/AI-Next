@@ -22,7 +22,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
 
   useEffect(()=>{
     const playImg = document.querySelector("#play-button");
-
+    if (!playImg) return;
     playImg.addEventListener("click",onThumbnailClick,{once:true});
   },[])
   if (!router.isFallback && !post?.slug) {
