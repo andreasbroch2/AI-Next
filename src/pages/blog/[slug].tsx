@@ -125,6 +125,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
                             alt={post.featuredImage?.node.altText}
                             width={post.featuredImage?.node.mediaDetails.width}
                             height={post.featuredImage?.node.mediaDetails.height}
+                            priority
                             sizes="
                       (max-width: 768px) 100vw,
                       50vw"
