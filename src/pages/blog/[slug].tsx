@@ -25,7 +25,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
     if (!playImg) return;
     playImg.addEventListener("click",onThumbnailClick,{once:true});
   },[])
-  if (!router.isFallback && !post?.slug) {
+  if (!router.isFallback && !post?.slug) { 
     return <ErrorPage statusCode={404} />
   }
   return (
