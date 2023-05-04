@@ -52,7 +52,7 @@ export default function Post({ post, preview, menuItems, footerMenuItems, cleanE
         thumbnailUrls={[`https://img.youtube.com/vi/${post.postsACF.youtubeId}/sddefault.jpg`]}
       />
       ):(null)}
-      <Layout data={post} type="article">
+      <Layout data={post} type="article"> 
         <Container>
           {router.isFallback ? (
             <PostTitle>Loading…</PostTitle>
