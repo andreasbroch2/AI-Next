@@ -13,7 +13,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 
 
-export default function Post({ post, preview, menuItems, footerMenuItems, cleanElement }) {
+export default function Post({ post, cleanElement }) {
   const router = useRouter()
   const [imageClicked, setImageClicked] = useState(false);
   const onThumbnailClick = () => {
@@ -169,8 +169,6 @@ export const getStaticProps: GetStaticProps = async ({
   previewData,
 }) => {
   const data = await getPostAndMorePosts(params?.slug, preview, previewData)
-  const menuItems = await getNavMenu('PRIMARY');
-  const footerMenuItems = await getNavMenu('FOOTER');
   var cleanElement = data.post.content.replace(/\n/g, '')
   cleanElement = cleanElement.replace(/href='https:\/\/aiedgemarketing\.ditsmartehjem\.dk/g, "href='");
   cleanElement = cleanElement.replace(/href="https:\/\/aiedgemarketing\.ditsmartehjem\.dk/g, 'href="');
@@ -179,8 +177,6 @@ export const getStaticProps: GetStaticProps = async ({
       preview,
       post: data.post,
       posts: data.posts,
-      menuItems,
-      footerMenuItems,
       cleanElement,
     },
     revalidate: 10,
