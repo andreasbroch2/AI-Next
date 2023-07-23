@@ -64,7 +64,7 @@ export default function Post({ post, cleanElement }) {
                     <div className="max-w-3xl mx-auto">
                       <div id="breadcrumbs" className='mb-4 text-xs'>
                         <span><Link href={'/blog/'}>Blog</Link></span>
-                        <span className="separator">  /  </span>
+                        <span className="separator">  /  </span> 
                         <span>{post.title}</span>
                       </div>
                       <h1>{`${post.title}`}</h1>
@@ -80,7 +80,7 @@ export default function Post({ post, cleanElement }) {
                             height={30}
                             priority
                           />
-                        </div>
+                        </div> 
                         <div className="post-meta__author-name">
                           <span>By </span>
                           <span>{post.author?.node.firstName}</span>
