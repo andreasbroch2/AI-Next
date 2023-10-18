@@ -7,7 +7,7 @@
     background: #f1f1f1;
   }
   h1 {
-    @apply text-4xl md:text-5xl leading-extra-tight;
+    @apply text-3xl md:text-5xl leading-extra-tight;
   }
 
   h2 {
